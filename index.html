@@ -1212,6 +1212,19 @@ a.ab-cv:hover{background:var(--mark);border-color:var(--mark);color:#fff}
 .ab-cv.ph{border:1.5px dashed var(--wb-2);color:var(--ink-2);font-weight:500;cursor:default;
   background:repeating-linear-gradient(135deg,transparent 0 6px,var(--sunk) 6px 7px)}
 .ab-cv.ph .mono{color:var(--muted);opacity:1}
+html.ab-cvopen{overflow:hidden;scrollbar-gutter:stable}
+.ab-cvv{position:fixed;inset:0;z-index:1000;overflow:auto;overscroll-behavior:contain;background:var(--bg);padding-bottom:32px}
+.ab-cvv-bar{position:sticky;top:0;z-index:1;background:var(--surface);border-bottom:1px solid var(--line);padding:env(safe-area-inset-top,0px) 16px 0}
+.ab-cvv-bar .in{max-width:880px;margin:0 auto;min-height:56px;display:flex;align-items:center;gap:12px}
+.ab-cvv-bar b{font-size:15px}
+.ab-cvv-bar .mono{font-size:12px;color:var(--muted)}
+.ab-cvv-bar a{margin-left:auto;font-size:13.5px}
+.ab-cvv-x{all:unset;box-sizing:border-box;cursor:pointer;margin-left:auto;display:inline-flex;align-items:center;padding:8px 15px;border-radius:999px;background:var(--ink);color:var(--surface);font-size:13px;font-weight:600;line-height:1.2}
+.ab-cvv-bar a+.ab-cvv-x{margin-left:4px}
+.ab-cvv-x:hover{background:var(--mark);color:#fff}
+.ab-cvv-x:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+.ab-cvv-pages{box-sizing:content-box;max-width:880px;margin:16px auto 0;padding:0 16px;display:grid;gap:16px}
+.ab-cvv-pages img{display:block;width:100%;height:auto;background:#fff;border:1px solid var(--line);box-shadow:0 2px 14px rgba(0,0,0,.08)}
 .ab-kv{margin:0;display:flex;flex-direction:column;flex:1 1 auto}
 .ab-kv>div{flex:1 1 auto;display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;min-height:44px;padding:8px 0;border-top:1px solid var(--line)}
 .ab-kv dt{font-size:13px;color:var(--muted)}
@@ -1480,7 +1493,108 @@ a.ab-cv:hover{background:var(--mark);border-color:var(--mark);color:#fff}
 .hx-host .sb-map{top:48px!important;right:12px!important;width:clamp(120px,22%,210px)!important;padding:5px 6px 6px!important;pointer-events:none}
 .hx-host .sb-map canvas{width:100%!important;height:auto!important}
 .hx-host .sb-map .hd button,.hx-host .sb-map .lg{display:none!important}
+
+.ld{display:none}
+.ld-on .ld{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));
+  background:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:48px 48px;background-position:-1px -1px;background-attachment:fixed;color:var(--ink);transition:opacity .55s ease,visibility 0s .55s}
+.ld-on .ld.out{opacity:0;visibility:hidden;pointer-events:none}
+.ld-in{width:min(560px,100%);display:grid;opacity:0;transform:translateY(calc(-3vh + 6px));transition:opacity .45s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+.ld.show .ld-in{opacity:1;transform:translateY(-3vh)}
+.ld.out .ld-in{transform:translateY(calc(-3vh - 8px))}
+.ld-e{font-family:var(--f-mono);font-size:11.5px;line-height:1.6;letter-spacing:.12em;color:var(--muted)}
+.ld-n{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 18px;margin-top:8px;font-family:var(--f-display);letter-spacing:.04em}
+.ld-n b{font-weight:900;font-size:clamp(40px,7.4vw,58px);line-height:1.15}
+.ld-n span{font-weight:600;font-size:clamp(18px,2.6vw,22px);line-height:1.4;color:var(--ink-2)}
+.ld-s{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:clamp(36px,8vh,68px);font-size:13px;line-height:1.6;color:var(--ink-2)}
+.ld-v{font-family:var(--f-mono);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ld-bar{position:relative;height:2px;margin-top:9px;background:var(--line)}
+.ld-bar i{position:absolute;inset:0;will-change:transform}
+.ld-bar .f{background:var(--mark);transform-origin:0 50%;transform:scaleX(0)}
+.ld-bar .h{transform:translateX(-100%)}
+.ld-bar .h::after{content:"";position:absolute;right:-4px;top:-3px;width:8px;height:8px;border-radius:50%;background:var(--mark)}
+.ld-bar .h::before{content:"";position:absolute;right:-9px;top:-8px;width:18px;height:18px;border-radius:50%;background:var(--mark);opacity:.16;animation:ld-pulse 1.8s ease-in-out infinite}
+@keyframes ld-pulse{0%,100%{transform:scale(.55);opacity:.24}50%{transform:scale(1);opacity:.08}}
+.ld-k{display:grid;grid-template-columns:15fr 10fr 10fr 50fr 15fr;margin:0;padding:0;list-style:none;font-size:12px;line-height:1.5;color:var(--muted)}
+.ld-k li{min-width:0;padding:8px 0 0 7px;border-left:1px solid var(--line);white-space:nowrap;transition:color .25s,border-color .25s}
+.ld-k li.on{color:var(--ink);border-left-color:var(--mark);font-weight:500}
+.ld-k li.ok{color:var(--ink-2);border-left-color:color-mix(in srgb,var(--mark) 50%,var(--line))}
+.ld-go{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:30px;font-size:12.5px;line-height:1.6;color:var(--muted);visibility:hidden;opacity:0;transition:opacity .4s ease,visibility 0s .4s}
+.ld-go.on{visibility:visible;opacity:1;transition:opacity .4s ease}
+.ld-go button{padding:0;border:0;background:none;color:var(--accent);font-size:13.5px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.ld-go button:hover{color:var(--mark)}
+@media (max-width:480px){.ld-k{font-size:11.5px}.ld-k li{padding-left:5px}}
 </style>
+<script>
+(function(){var h=(location.hash||"").slice(1).split(".")[0];if((h===""||h==="home")&&!/[?&]nosplash\b/.test(location.search))document.documentElement.classList.add("ld-on")})();
+</script>
+<div class="ld" id="ld" aria-label="正在载入作品集首页">
+  <div class="ld-in">
+    <p class="ld-e">LEVEL DESIGN · 开放世界 ARPG</p>
+    <p class="ld-n"><b>周少川</b><span>关卡策划作品集</span></p>
+    <div class="ld-s"><span class="ld-t" aria-live="polite">载入页面</span><span class="ld-v"></span></div>
+    <div class="ld-bar" role="progressbar" aria-label="首页载入进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i class="f"></i><i class="h"></i></div>
+    <ol class="ld-k"><li>页面</li><li>字体</li><li>图片</li><li>3D 沙盘</li><li>搭建场景</li></ol>
+    <p class="ld-go"><button type="button" tabindex="-1">直接进入 →</button><span>3D 沙盘会在首页里接着载入</span></p>
+  </div>
+</div>
+<script>
+(function(){
+  var R=document.documentElement,el=document.getElementById("ld");
+  if(!el)return;
+  if(!R.classList.contains("ld-on")){el.parentNode.removeChild(el);return}
+  var K=["page","font","img","data","build"],W={page:.15,font:.1,img:.1,data:.5,build:.15};
+  var DEF={page:"载入页面",font:"载入字体",img:"载入图片",data:"载入 3D 沙盘",build:"搭建场景"};
+  var f={page:0,font:0,img:0,data:0,build:0},info={};
+  var q=function(s){return el.querySelector(s)};
+  var bar=q(".ld-bar"),fill=q(".ld-bar .f"),head=q(".ld-bar .h"),tx=q(".ld-t"),vx=q(".ld-v"),lis=el.querySelectorAll(".ld-k li"),go=q(".ld-go");
+  var t0=Date.now(),shown=0,closed=false,started=false,raf=0,lastK="",timers=[];
+  var open,gate=new Promise(function(r){open=r});
+  function at(){var p=0;for(var i=0;i<K.length;i++){var k=K[i],v=f[k];if(v>=1){p+=W[k];continue}p+=W[k]*Math.max(0,Math.min(.98,v));break}return p}
+  function cur(){for(var i=0;i<K.length;i++)if(f[K[i]]<1)return i;return K.length}
+  function paint(sec,ease){
+    raf=0;var p=Math.max(shown,at());
+    if(p>shown||sec!=null){shown=p;var t="transform "+(sec==null?.35:sec)+"s "+(ease||"ease-out");
+      fill.style.transition=head.style.transition=t;fill.style.transform="scaleX("+p+")";head.style.transform="translateX("+((p-1)*100)+"%)";
+      bar.setAttribute("aria-valuenow",Math.round(p*100))}
+    var c=cur(),k=K[c],m=k&&info[k];
+    for(var i=0;i<lis.length;i++)lis[i].className=i<c?"ok":i===c?"on":"";
+    var t1=k?(m&&m[0]||DEF[k]):"就绪",v1=k&&m&&m[1]||"";
+    if(tx.textContent!==t1)tx.textContent=t1;if(vx.textContent!==v1)vx.textContent=v1;
+  }
+  var later=function(){if(!raf&&!closed)raf=requestAnimationFrame(function(){paint()})};
+  f.page=.8;paint(6,"cubic-bezier(.2,.65,.3,1)");
+  var show=function(){el.classList.add("show")},F=document.fonts;
+  if(F&&F.load){Promise.all([['900 56px "Noto Serif SC"',"周少川"],['600 22px "Noto Serif SC"',"关卡策划作品集"],
+      ['400 13px "Noto Sans SC"',el.textContent+"载入就绪搭建场景学府区沙盘"],['500 13px "Noto Sans SC"',"页面字体图片沙盘搭建场景就绪"],['400 12px "JetBrains Mono"',"LEVEL DESIGN ARPG 0123456789/.MB"]]
+      .map(function(a){return F.load(a[0],a[1]).catch(function(){})})).then(show);timers.push(setTimeout(show,900))}else show();
+  var slow=false,maybeGo=function(){if(slow&&!closed&&f.page>=1&&f.data<1&&!go.classList.contains("on")){go.classList.add("on");go.querySelector("button").removeAttribute("tabindex")}};
+  timers.push(setTimeout(function(){slow=true;maybeGo()},8000));
+  go.querySelector("button").addEventListener("click",function(){close()});
+  var stop=function(e){e.preventDefault()};
+  el.addEventListener("wheel",stop,{passive:false});el.addEventListener("touchmove",stop,{passive:false});
+  var keys=function(e){if(!closed&&/^(Space| |PageUp|PageDown|ArrowUp|ArrowDown|Home|End)$/.test(e.key===" "?"Space":e.key)&&!(e.target&&e.target.closest&&e.target.closest(".ld")))e.preventDefault()};
+  addEventListener("keydown",keys);
+  function lock(on){["header.top","#app","footer.foot",".hx-note"].forEach(function(s){var n=document.querySelector(s);if(n){if(on)n.setAttribute("inert","");else n.removeAttribute("inert")}})}
+  function close(now){
+    if(closed)return;closed=true;open();
+    timers.forEach(clearTimeout);if(raf)cancelAnimationFrame(raf);removeEventListener("keydown",keys);lock(false);
+    el.classList.add("out");R.classList.add("ld-out");
+    setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);R.classList.remove("ld-on","ld-out")},now?0:650);
+  }
+  document.addEventListener("DOMContentLoaded",function(){setTimeout(function(){if(!started)close(true)},0)});
+  window.HX_LD={on:true,gate:gate,
+    get open(){return !closed},
+    set:function(k,v,text,val){if(closed)return;started=true;if(v>f[k])f[k]=v;if(text!=null||val!=null)info[k]=[text,val];later()},
+    done:function(k,text,val){if(closed)return;started=true;f[k]=1;if(text!=null||val!=null)info[k]=[text,val];if(k==="page"){lock(true);maybeGo()}later()},
+    crawl:function(k,v,sec,text){if(closed)return Promise.resolve();started=true;if(v>f[k])f[k]=v;if(text!=null)info[k]=[text,""];
+      if(raf){cancelAnimationFrame(raf);raf=0}paint(sec,"cubic-bezier(.25,.6,.35,1)");
+      return new Promise(function(r){var d=0,ok=function(){if(!d){d=1;r()}},nx=function(g){requestAnimationFrame(function(){setTimeout(g,0)})};nx(function(){nx(ok)});setTimeout(ok,250)})},
+    finish:function(){if(closed)return;K.forEach(function(k){f[k]=1});if(raf){cancelAnimationFrame(raf);raf=0}paint(.3);
+      timers.push(setTimeout(close,Math.max(0,600-(Date.now()-t0))+380))},
+    close:close};
+})();
+</script>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#home">周少川<span class="bsep" aria-hidden="true"></span>关卡策划作品集<small>LEVEL DESIGN · 开放世界 ARPG</small></a>
@@ -1945,7 +2059,9 @@ function pageAbout(){
 }
 function page404(){return `<div class="phead"><h1 class="h1">没有找到这个页面</h1><p><a href="#home">回到首页</a></p></div>`}
 
-const ABOUT_CV="resume.pdf";
+const ABOUT_CV="files/zhoushaochuan-resume.pdf";
+const ABOUT_CV_PAGES=["img/cv/p1.webp","img/cv/p2.webp"];
+const ABOUT_CV_WH=[1654,2339];
 const ABOUT_CONTACT=[
   ["邮箱","mail","darkcmd99@gmail.com"],
   ["电话","tel","18118155829"],
@@ -1974,7 +2090,7 @@ function pageAbout(){
   ];
   const [nC,nT]=aboutCounts();
   const cv=ABOUT_CV
-    ?`<a class="ab-cv" href="${esc(ABOUT_CV)}" target="_blank" rel="noopener"><span>查看简历</span><span class="mono">PDF ↗</span></a>`
+    ?`<a class="ab-cv" href="${esc(ABOUT_CV)}" target="_blank" rel="noopener"${ABOUT_CV_PAGES.length?" data-cv-view":""}><span>查看简历</span><span class="mono">${ABOUT_CV_PAGES.length?`PDF · ${ABOUT_CV_PAGES.length} 页`:"PDF ↗"}</span></a>`
     :`<span class="ab-cv ph" title="简历链接待补"><span>简历 PDF</span><span class="mono">链接待补</span></span>`;
   const kv=ABOUT_CONTACT.map(([k,t,v])=>{
     if(!v) return `<div><dt>${k}</dt><dd><span class="ab-ph">待补充</span></dd></div>`;
@@ -2033,6 +2149,42 @@ function pageAbout(){
   </div>
 </div>`;
 }
+
+function aboutCvOpen(from){
+  if(document.querySelector(".ab-cvv")) return;
+  let solo=false; try{solo=window.top===window.self}catch(e){}
+  const [w,h]=ABOUT_CV_WH;
+  const el=document.createElement("div");
+  el.className="ab-cvv"; el.setAttribute("role","dialog"); el.setAttribute("aria-modal","true"); el.setAttribute("aria-label","简历");
+  el.innerHTML=`<div class="ab-cvv-bar"><div class="in"><b>简历</b><span class="mono">${ABOUT_CV_PAGES.length} 页</span>`
+    +(solo?`<a href="${ABOUT_CV}" target="_blank" rel="noopener">打开 PDF ↗</a>`:"")
+    +`<button type="button" class="ab-cvv-x">关闭 ✕</button></div></div>`
+    +`<div class="ab-cvv-pages">${ABOUT_CV_PAGES.map((s,i)=>`<img src="${s}" width="${w}" height="${h}" alt="简历第 ${i+1} 页" decoding="async">`).join("")}</div>`;
+  document.body.appendChild(el);
+  document.documentElement.classList.add("ab-cvopen");
+  const x=el.querySelector(".ab-cvv-x");
+  const close=()=>{
+    el.remove(); document.documentElement.classList.remove("ab-cvopen");
+    removeEventListener("keydown",key,true); removeEventListener("hashchange",close);
+    if(from&&from.isConnected) from.focus({preventScroll:true});
+  };
+  const key=e=>{
+    if(e.key==="Escape"){e.preventDefault();close();return}
+    if(e.key==="Tab"){
+      const f=[...el.querySelectorAll("a[href],button")],i=f.indexOf(document.activeElement);
+      if(e.shiftKey?i<=0:i===f.length-1){e.preventDefault();f[e.shiftKey?f.length-1:0].focus()}
+    }
+  };
+  x.addEventListener("click",close);
+  addEventListener("keydown",key,true);
+  addEventListener("hashchange",close);
+  x.focus({preventScroll:true});
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest&&e.target.closest("a[data-cv-view]"); if(!a) return;
+  if(e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey) return;
+  e.preventDefault(); aboutCvOpen(a);
+});
 
 document.addEventListener("click",e=>{
   const b=e.target.closest&&e.target.closest(".ab-copy"); if(!b) return;
@@ -2268,9 +2420,10 @@ svg.tx .tx-rt.draw.tx-hid,svg.tx .tx-hid .tx-rt.draw{stroke-dashoffset:1}
 svg.tx.tx-noanim,svg.tx.tx-noanim *{transition:none!important}
 html.tbx-lock{overflow:hidden}
 
-.tbx-main{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"fig" "do" "chk" "side";gap:16px}
-.tbx-chk{grid-area:chk;min-width:0}
-.tbx-figw{grid-area:fig;min-width:0}.tbx-do{grid-area:do;min-width:0}.tbx-side{grid-area:side;min-width:0}
+.tbx-main{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"fig" "do";gap:16px}
+.tbx-figw{grid-area:fig;min-width:0}.tbx-do{grid-area:do;min-width:0}
+.tbx-pq{margin:-6px 0 0}.tbx-r{margin:-4px 0 0}
+.tbx-meta .tbx-use{margin:0}
 .tbx-body{gap:14px}
 .tbx-body h2{font-size:clamp(20px,1.9vw,25px)}
 .tbx-r{font-size:15.5px;line-height:1.65}
@@ -2289,8 +2442,9 @@ html.tbx-lock{overflow:hidden}
 .tbx-steps li b{font-weight:600;color:var(--ink)}
 
 @media (min-width:1180px){
-  .tbx-main{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);grid-template-areas:"fig do" "fig chk" "side side";grid-template-rows:auto 1fr auto;gap:16px 24px;align-items:start}
-  .tbx-chk{padding-top:12px;border-top:1px solid var(--line)}
+  .tbx-main{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);grid-template-areas:"fig do";gap:16px 24px;align-items:start}
+  .tbx-ex{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 28px}
+  .tbx-ex li:only-child{grid-column:1/-1}
   figure.wb.tbx-fig svg{max-height:none;min-width:0}
   .tbx-do .tbx-steps li{font-size:13.5px;line-height:1.6}
   .tbx-fig .tbx-ctl .nav{display:none}
@@ -2357,7 +2511,7 @@ function pageToolbox(){
   const n=TOOLS.length;
   return `<div class="phead tbx-head"><div class="tbx-ht"><div><div class="eyebrow">关卡设计方法 · ${n} 条 · ${TB_CATS.length} 类问题</div><h1 class="h1">可以带到下一个项目里的设计方法</h1></div>
     <input id="tbq" class="tbx-q" type="search" placeholder="搜索方法，例如：入口、跟随、密度、据点" aria-label="搜索方法" autocomplete="off"></div>
-  <p class="lede">每条先写一句原则，再写通用的做法、检查和取舍，配一张可以切换的原理示意图；项目里用过的数字单独标出处，案例放在最后。标“精选”的几条做得更深：多了改前改后的对照、可以动手的示意，还能原地打开案例的 3D 沙盘。</p>${typeof TBX_NOTE==="function"?TBX_NOTE():""}</div>
+  <p class="lede">每条一个问题、一句原则、几步做法，配一张可以切换的原理示意图，最后是用过它的案例。</p>${typeof TBX_NOTE==="function"?TBX_NOTE():""}</div>
   <div class="tbx-bar">
     <div class="tbx-cats" role="group" aria-label="按问题分类"><button type="button" data-c="" aria-pressed="true">全部<span class="mono">${n}</span></button>${TB_CATS.map(c=>`<button type="button" data-c="${c}" aria-pressed="false">${c}<span class="mono">${TOOLS.filter(t=>t.cat===c).length}</span></button>`).join("")}</div>
     <div class="tbx-uses" role="group" aria-label="按场景筛选"><span class="lbl">按场景</span><button type="button" data-u="" aria-pressed="true">不限</button>${TBX_USES.map(u=>`<button type="button" data-u="${u}" aria-pressed="false">${u}<span class="mono">${TOOLS.filter(t=>(t.use||[]).includes(u)).length}</span></button>`).join("")}</div>
@@ -2367,9 +2521,9 @@ function pageToolbox(){
 
 function tbxRenderList(){
   const vis=tbxVisible(),el=$("#tbxl");if(!el)return;
-  const tag=t=>(t.feat?'<em class="tbx-ft">精选</em>':"")+(typeof TBX_TAG==="function"?TBX_TAG(t):"");
+  const tag=t=>typeof TBX_TAG==="function"?TBX_TAG(t):"";
   const flt=tbxQ.trim()||tbxCat||tbxUse;
-  el.innerHTML=(typeof tbxMapHTML==="function"&&!flt?`<a class="tbx-i tbx-mapi" href="#toolbox" data-id=""${tbxSel===""?' aria-current="true"':""}><b>方法地图</b><span>九类方法归成五件事，先看哪几条</span></a>`:"")
+  el.innerHTML=(typeof tbxMapHTML==="function"&&!flt?`<a class="tbx-i tbx-mapi" href="#toolbox" data-id=""${tbxSel===""?' aria-current="true"':""}><b>方法地图</b><span>九类方法归成五件事，都在一张图上</span></a>`:"")
     +(typeof tbxCkHTML==="function"&&!flt?`<a class="tbx-i tbx-mapi tbx-cki" href="#toolbox.checklist" data-id="checklist"${tbxSel==="checklist"?' aria-current="true"':""}><b>走查清单</b><span>按场景把检查问题汇成一张能勾选的清单</span></a>`:"")+(vis.length?TB_CATS.map(c=>{const it=vis.filter(t=>t.cat===c);if(!it.length)return "";
     return `<div class="tbx-g"><div class="tbx-gh"><span>${c}</span><span>${it.length}</span></div>${it.map(t=>`<a class="tbx-i" href="#toolbox.${t.id}" data-id="${t.id}"${t.draft?' data-draft="1"':""}${t.id===tbxSel?' aria-current="true"':""}><b>${t.t}${tag(t)}</b><span>${t.q||t.r||t.p}</span></a>`).join("")}</div>`}).join("")
     :tbxQ.trim()?`<p class="tbx-none">没有找到和“${TBX_G.E(tbxQ)}”有关的方法，换一个关键词试试。</p>`:`<p class="tbx-none">这个分类和场景下没有方法，换一个组合试试。</p>`);
@@ -2416,28 +2570,21 @@ function tbxDetailHTML(m){
   const inCat=TOOLS.filter(t=>t.cat===m.cat),k=inCat.indexOf(m)+1;
   const vis=tbxVisible(),vi=vis.indexOf(m),prev=vi>0?vis[vi-1]:null,next=vi>=0&&vi<vis.length-1?vis[vi+1]:null;
   const exs=(m.ex||[]).map(e=>`<li>${e[0]}${e[1]?" "+tbxLink(e[1],e[2]):""}</li>`).join("");
-  const rel=(m.rel||[]).map(id=>tbxById(id)).filter(Boolean);
-  const refs=(m.ref||[]).map(r=>`<li><b>${r[0]}</b><span>${r[1]}</span></li>`).join("");
   const draft=m.draft&&typeof TBX_DRAFT==="function";
-  return `<div class="tbx-top"><button type="button" class="tbx-back">‹ 方法列表</button><span class="eyebrow">${m.cat} · ${tbxPad(k)}/${tbxPad(inCat.length)}${m.feat?' · <b class="tbx-ftb">精选方法</b>':""}</span>
+  return `<div class="tbx-top"><button type="button" class="tbx-back">‹ 方法列表</button><span class="eyebrow">${m.cat} · ${tbxPad(k)}/${tbxPad(inCat.length)}</span>
       <span class="tbx-pn"><button type="button" data-go="-1" aria-label="上一个方法"${prev?"":" disabled"}>‹</button><button type="button" data-go="1" aria-label="下一个方法"${next?"":" disabled"}>›</button></span></div>
     <div class="tbx-body">
       <h2 class="h2" tabindex="-1">${m.t}</h2>
+      ${m.q||m.p?`<p class="tbx-pq"><b>问题</b>${m.q||m.p}</p>`:""}
       ${m.r?`<p class="tbx-r">${m.r}</p>`:""}
-      ${m.use&&m.use.length?`<div class="tbx-use"><span>适用</span>${m.use.map(u=>`<button type="button" class="tbx-u" data-u="${u}" aria-pressed="${tbxUse===u}" title="只看适用于“${u}”的方法，再点一次取消">${u}</button>`).join("")}</div>`:""}
       ${draft?TBX_DRAFT(m):`
-      <p class="tbx-pq"><b>问题</b>${m.p}</p>
       <div class="tbx-main">
         <div class="tbx-figw">${tbxFigHTML(m)}</div>
         <section class="tbx-do"><h3 class="tbx-h">做法</h3><ol class="tbx-steps">${m.steps.map(s=>`<li><span>${s.replace(/^([^：，。“”]{1,8})：/,"<b>$1</b>：")}</span></li>`).join("")}</ol></section>
-        <section class="tbx-chk"><h3 class="tbx-h">检查</h3><ul class="tbx-ul">${m.chk.map(s=>`<li>${s}</li>`).join("")}</ul>${m.tr?`<h3 class="tbx-h tbx-trh">取舍</h3><p class="tbx-tr">${m.tr}</p>`:""}</section>
-        ${refs?`<section class="tbx-side"><h3 class="tbx-h">参考值</h3><ul class="tbx-ref">${refs}</ul><p class="tbx-ref-n">项目里实际用过的数字，换一个项目要按角色尺度、移动速度和镜头重新核验。</p></section>`:""}
       </div>
-      ${m.feat&&typeof tbxFeatHTML==="function"?tbxFeatHTML(m):""}
-      ${exs?`<section><h3 class="tbx-h">用在哪些案例</h3><ul class="tbx-ex">${exs}</ul>${m.peek&&typeof tbxPeekBtn==="function"?tbxPeekBtn(m):""}</section>`:""}`}
+      ${exs?`<section class="tbx-exs"><h3 class="tbx-h">用在哪些案例</h3><ul class="tbx-ex">${exs}</ul></section>`:""}`}
       <div class="tbx-meta">
-        ${!draft&&m.out&&m.out.length?`<div class="tbx-o"><span class="small muted">产出</span> ${m.out.map(s=>`<i>${s}</i>`).join("")}</div>`:""}
-        ${rel.length?`<div class="tbx-rel"><span class="small muted">相关方法</span>${rel.map(r=>`<a class="chip" href="#toolbox.${r.id}" data-id="${r.id}">${r.s||r.t}</a>`).join("")}</div>`:""}
+        ${m.use&&m.use.length?`<div class="tbx-use"><span>适用</span>${m.use.map(u=>`<button type="button" class="tbx-u" data-u="${u}" aria-pressed="${tbxUse===u}" title="只看适用于“${u}”的方法，再点一次取消">${u}</button>`).join("")}</div>`:""}
         ${typeof TBX_FROM==="function"?TBX_FROM(m):""}
       </div>
       <div class="tbx-foot"><button type="button" data-go="-1"${prev?"":" disabled"}><span>上一个</span><b>${prev?prev.t:""}</b></button><button type="button" data-go="1"${next?"":" disabled"}><span>下一个</span><b>${next?next.t:""}</b></button></div>
@@ -2456,7 +2603,6 @@ function tbxShow(id){
   d.classList.remove("tbx-ismap");
   d.innerHTML=tbxDetailHTML(m);d.scrollTop=0;d.classList.remove("scrolled");
   tbxMountFig(d,m);
-  if(m.feat&&typeof tbxFeatMount==="function")tbxKill=tbxFeatMount(d,m);
   $$("#tbxl .tbx-i").forEach(a=>{if(a.dataset.id===id)a.setAttribute("aria-current","true");else a.removeAttribute("aria-current")});
   tbxTopFit();
 }
@@ -2535,7 +2681,6 @@ function initToolbox(sub){
   $$(".tbx-uses button").forEach(b=>b.addEventListener("click",()=>tbxUseSet(tbxUse===b.dataset.u?"":b.dataset.u)));
   list.addEventListener("click",e=>{const a=e.target.closest("a.tbx-i");if(!a||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button)return;
     e.preventDefault();tbxGo(a.dataset.id,{push:true});if(tbxDesk())a.focus({preventScroll:true})});
-  if(typeof tbxPeekClick==="function")d.addEventListener("click",tbxPeekClick);
   list.addEventListener("keydown",e=>{if(e.key!=="ArrowDown"&&e.key!=="ArrowUp")return;const a=e.target.closest("a.tbx-i");if(!a)return;
     const all=$$("#tbxl .tbx-i"),i=all.indexOf(a),n=all[i+(e.key==="ArrowDown"?1:-1)];if(!n)return;
     e.preventDefault();n.focus();if(tbxDesk())tbxGo(n.dataset.id,{reveal:true})});
@@ -2543,7 +2688,6 @@ function initToolbox(sub){
     const g=e.target.closest(".tbx-pn button,.tbx-foot button");if(g){tbxStep(+g.dataset.go);if(!tbxDesk())d.scrollTop=0;return}
     if(e.target.closest(".tbx-back")){tbxCloseSheet(false);return}
     const u=e.target.closest(".tbx-u");if(u){tbxUseSet(tbxUse===u.dataset.u?"":u.dataset.u);return}
-    const r=e.target.closest(".tbx-rel a[data-id]");if(r&&!(e.metaKey||e.ctrlKey||e.shiftKey)){e.preventDefault();tbxGo(r.dataset.id,{reveal:true});return}
   });
   d.addEventListener("scroll",()=>d.classList.toggle("scrolled",d.scrollTop>4),{passive:true});
   d.addEventListener("keydown",e=>{if(e.key==="Escape"&&tbxOpen){e.preventDefault();tbxCloseSheet(false)}});
@@ -2571,13 +2715,10 @@ matchMedia("(min-width:960px)").addEventListener("change",e=>{
   if(document.getElementById("tbx2-css")) return;
   const st=document.createElement("style");st.id="tbx2-css";
   st.textContent=`
-:root{--tbl-in:#7C6FA0}
 
 .tbm.tbx-body{gap:14px}
 .tbm-lede{margin:-6px 0 0;color:var(--ink-2);font-size:14.5px;line-height:1.75;max-width:60em}
 .tbm-lede.wide{max-width:none}
-.tbm-lg{white-space:nowrap}
-.tbm-lg .tbm-m{display:inline-block;margin:0 6px 0 4px;vertical-align:1px;font-style:normal}
 .tbm-flow{container-type:inline-size;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);overflow:hidden}
 .tbm-row{display:grid;grid-template-columns:112px minmax(0,1fr);border-top:1px solid var(--line)}
 .tbm-row:first-child{border-top:0}
@@ -2594,8 +2735,6 @@ matchMedia("(min-width:960px)").addEventListener("change",e=>{
 .tbm-m{font-size:12.5px;line-height:1;padding:5px 9px 6px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);text-decoration:none;background:var(--bg);white-space:nowrap}
 a.tbm-m:hover{border-color:var(--ink-2);color:var(--ink)}
 a.tbm-m:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-.tbm-m.ft{background:var(--mark-soft);border-color:color-mix(in srgb,var(--mark) 35%,transparent);color:var(--mark);font-weight:600}
-a.tbm-m.ft:hover{border-color:var(--mark);color:var(--mark)}
 
 @container (min-width:700px){
   .tbm-cat.one{grid-template-columns:236px minmax(0,1fr);gap:6px 18px}
@@ -2611,192 +2750,31 @@ a.tbm-m.ft:hover{border-color:var(--mark);color:var(--mark)}
   .tbm-st{padding-bottom:6px}
   .tbm-cats{border-left:0}
 }
-.tbm-panel{container-type:inline-size;display:grid;gap:8px;padding-top:2px}
-.tbm-panel .tbx-h{margin:0}
-.tbm-six{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.tbm-s{display:grid;gap:2px;align-content:start;border:1px solid var(--line);border-radius:var(--r);padding:9px 12px 10px;text-decoration:none;color:inherit;background:var(--bg);min-width:0}
-.tbm-s .n{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);letter-spacing:.08em}
-.tbm-s b{font-size:14px;font-weight:600;line-height:1.4}
-.tbm-s .q{font-size:12.5px;color:var(--ink-2);line-height:1.55}
-.tbm-s:hover{border-color:var(--ink-2)}
-@container (min-width:860px){.tbm-six{grid-template-columns:repeat(6,minmax(0,1fr))}}
-@container (max-width:480px){.tbm-six{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.tbm em,.tbl em.tbx-ft{font-style:normal;font-family:var(--f-mono);font-weight:600;font-size:10.5px;line-height:1;letter-spacing:.04em;padding:2px 5px 3px;border-radius:3px;margin-left:6px;vertical-align:2px;white-space:nowrap}
-.tbm em.tbx-ft{background:var(--mark-soft);color:var(--mark)}
-.tbm em.tbx-nw{background:var(--accent-soft);color:var(--accent)}
-
-.tbl-ba{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.tbl-ba>div{border:1px solid var(--line);border-radius:var(--r);padding:10px 13px 11px;background:var(--surface);display:grid;gap:4px;align-content:start}
-.tbl-ba b{font:600 11.5px/1.4 var(--f-mono);letter-spacing:.1em}
-.tbl-ba .no b{color:var(--tbx-bad)}.tbl-ba .ok b{color:var(--accent)}
-.tbl-ba .no{border-top:2px solid var(--tbx-bad)}.tbl-ba .ok{border-top:2px solid var(--accent)}
-.tbl-ba p{margin:0;font-size:13.5px;line-height:1.7;color:var(--ink-2)}
-@media (max-width:700px){.tbl-ba{grid-template-columns:minmax(0,1fr)}}
-
-.tbl{display:grid;gap:10px;border:1px solid var(--line);border-radius:var(--r);padding:13px 15px 15px;background:var(--bg);min-width:0}
-.tbl-hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
-.tbl-hd .tbx-h{margin:0;color:var(--mark)}
-.tbl-hd p{margin:0;font-size:13px;line-height:1.6;color:var(--ink-2)}
-.tbl-2{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start}
-@media (min-width:1180px){.tbl-2{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}}
-.tbl-stage{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden;min-width:0}
-.tbl-stage svg{display:block;width:100%;height:auto;user-select:none;-webkit-user-select:none}
-.tbl-bar{display:flex;flex-wrap:wrap;align-items:center;gap:5px;padding:8px 10px;border-bottom:1px solid var(--line)}
-.tbl-bar.b{border-bottom:0;border-top:1px solid var(--line)}
-.tbl-btn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 10px;font:inherit;font-size:12px;line-height:1.5;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-.tbl-btn:hover{border-color:var(--ink-2)}
-.tbl-btn[aria-pressed="true"],.tbl-btn[aria-selected="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
-.tbl-btn .mono{font-size:10.5px;opacity:.7}
-.tbl-btn.no[aria-pressed="true"]{background:var(--tbx-bad);border-color:var(--tbx-bad);color:#fff}
-.tbl-btn.ok[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
-.tbl-sep{width:1px;height:16px;background:var(--line);margin:0 4px}
-.tbl-lbl{font-size:11.5px;color:var(--muted);margin-right:2px}
-.tbl-range{flex:1;min-width:110px;accent-color:var(--mark)}
-.tbl-side{display:grid;gap:12px;min-width:0;align-content:start}
-.tbl-num{display:grid;gap:1px}
-.tbl-num b{font:700 30px/1.15 var(--f-display);color:var(--ink)}
-.tbl-num b small{font-size:15px;font-weight:600;margin-left:2px}
-.tbl-num span{font-size:12.5px;color:var(--ink-2)}
-.tbl-strip{display:grid;gap:4px}
-.tbl-strip svg{display:block;width:100%;height:16px;border-radius:3px;background:var(--sunk)}
-.tbl-strip .seg{fill:var(--mark)}.tbl-strip .cur{fill:var(--ink)}
-.tbl-strip span{display:flex;justify-content:space-between;font:11px/1.3 var(--f-mono);color:var(--muted)}
-.tbl-now{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:13px;color:var(--ink-2)}
-.tbl-tag{font-size:12px;line-height:1;padding:5px 9px;border-radius:999px;background:var(--sunk);color:var(--ink-2);white-space:nowrap}
-.tbl-tag.on{background:var(--mark);color:#fff}.tbl-tag.edge{background:var(--mark-soft);color:var(--mark)}.tbl-tag.blk{background:var(--tbx-bad-soft);color:var(--tbx-bad)}
-.tbl-say{margin:0;font-size:13.5px;line-height:1.7;color:var(--ink-2)}
-.tbl-say b{color:var(--ink);font-weight:600}
-.tbl-note{margin:0;font-size:12px;line-height:1.6;color:var(--muted)}
-
-.tbl-view svg{cursor:crosshair;touch-action:none}
-.tbl-view .v-wide{fill:var(--mark);opacity:.09}
-.tbl-view .v-mid{fill:var(--mark);opacity:.2}
-.tbl-view .v-path{fill:none;stroke:var(--muted);stroke-width:2;stroke-dasharray:2 5;stroke-linecap:round}
-.tbl-view .v-hit{fill:none;stroke:var(--mark);stroke-width:5;stroke-linecap:round;opacity:.9}
-.tbl-view .v-los{stroke:var(--muted);stroke-width:1.2;stroke-dasharray:4 4}
-.tbl-view .v-los.on{stroke:var(--mark);stroke-dasharray:none;stroke-width:1.6}
-.tbl-view .v-los.blk{stroke:var(--tbx-bad)}
-.tbl-view .v-pin{cursor:grab}
-.tbl-view .v-pin:active{cursor:grabbing}
-.tbl-view .v-pin .halo{fill:var(--mark);opacity:.14}
-.tbl-view .v-pin text{font-size:11px;fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:3px;font-weight:600}
-
-.tbl-g{display:grid;grid-template-columns:54px repeat(4,minmax(0,1fr));gap:4px;padding:10px;user-select:none;-webkit-user-select:none}
-.tbl-g .ax{font-size:11.5px;line-height:1.35;color:var(--muted);display:grid;align-content:center;justify-items:center;text-align:center;padding:2px}
-.tbl-g .ax b{font-size:13px;color:var(--ink);font-weight:600}
-.tbl-g .ax.y{justify-items:end;text-align:right;padding-right:6px}
-.tbl-g .corner{font-size:10.5px;color:var(--muted);display:grid;align-content:end;justify-items:end;padding:0 6px 2px 0;line-height:1.3;text-align:right}
-.tbl-cell{min-height:58px;border:1px dashed var(--line);border-radius:6px;background:var(--bg);display:flex;flex-wrap:wrap;align-content:flex-start;gap:4px;padding:5px;min-width:0}
-.tbl-cell.over{border-color:var(--mark);border-style:solid;background:var(--mark-soft)}
-.tbl-cell.bad{background:var(--tbx-bad-soft);border-color:var(--tbx-bad)}
-.tbl-cell.pick{cursor:pointer}
-.tbl-chip{border:1px solid var(--line);border-left:4px solid var(--c,var(--ink-2));background:var(--surface);border-radius:4px;padding:2px 7px 3px 6px;font:inherit;font-size:12px;line-height:1.5;color:var(--ink);cursor:grab;touch-action:none;white-space:nowrap}
-@media (max-width:560px){.tbl-cell{padding:3px;gap:3px}.tbl-chip{font-size:11px;padding:2px 4px 3px 4px;border-left-width:3px;max-width:100%;overflow:hidden;text-overflow:ellipsis}}
-.tbl-chip[aria-pressed="true"]{box-shadow:0 0 0 2px var(--mark)}
-.tbl-chip.drag{opacity:.35}
-.tbl-ghost{position:fixed;z-index:2000;pointer-events:none;transform:translate(-50%,-60%);box-shadow:0 6px 18px rgba(0,0,0,.22)}
-.tbl-leg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--ink-2)}
-.tbl-leg i{display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--c);margin-right:5px;vertical-align:-1px}
-.tbl-diag{margin:0;padding:0;list-style:none;display:grid;gap:6px}
-.tbl-diag li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:6px;font-size:13px;line-height:1.6;color:var(--ink-2)}
-.tbl-diag li::before{content:"✓";font-weight:700;color:var(--accent)}
-.tbl-diag li.x::before{content:"✕";color:var(--tbx-bad)}
-.tbl-diag li.x{color:var(--ink)}
-.tbl-sum{font-size:13px;color:var(--ink-2)}
-.tbl-sum b{font:700 22px/1.2 var(--f-display);color:var(--ink);margin-right:6px}
-.tbl-info{border-top:1px solid var(--line);padding-top:10px;display:grid;gap:4px;font-size:13px;line-height:1.6;color:var(--ink-2)}
-.tbl-info b{color:var(--ink);font-weight:600}
-.tbl-info dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px}
-.tbl-info dt{font:600 11.5px/1.9 var(--f-mono);color:var(--muted);white-space:nowrap}
-.tbl-info dd{margin:0}
-
-.tbl-map{position:relative}
-.tbl-map svg{max-height:min(52vh,430px)}
-.tbl-map svg{background:color-mix(in srgb,var(--accent) 13%,var(--surface))}
-.tbl-load{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;color:var(--muted);background:var(--surface)}
-.tbl-bot .land{fill:var(--sunk)}
-.tbl-bot .wat{fill:color-mix(in srgb,var(--accent) 13%,var(--surface))}
-.tbl-bot .rd{fill:none;stroke:var(--surface);stroke-linecap:round;stroke-linejoin:round}
-.tbl-bot .ln{fill:none;stroke:var(--surface);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
-.tbl-bot .poi{fill:var(--surface);stroke:var(--muted);stroke-width:1.4}
-.tbl-bot .poi.see{stroke:var(--ink);stroke-width:2;fill:var(--mark-soft)}
-.tbl-bot .poi.done{fill:var(--ink);stroke:var(--surface);stroke-width:1.6}
-.tbl-bot .trk{fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
-.tbl-bot .trk.G{stroke:var(--mark)}.tbl-bot .trk.P{stroke:var(--accent)}.tbl-bot .trk.I{stroke:var(--tbl-in)}
-.tbl-bot .all{fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:.16}
-.tbl-bot .me{fill:var(--mark);stroke:#fff;stroke-width:2.4}
-.tbl-bot .lbl{font-size:13px;fill:var(--ink-2);paint-order:stroke;stroke:var(--sunk);stroke-width:4px}
-.tbl-kv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.tbl-kv div{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:7px 10px;display:grid;gap:1px}
-.tbl-kv b{font:700 20px/1.2 var(--f-display);color:var(--ink)}
-.tbl-kv span{font-size:12px;color:var(--ink-2)}
-.tbl-dl{margin:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 12px;font-size:13px;color:var(--ink-2)}
-.tbl-dl dt{min-width:0}.tbl-dl dd{margin:0;font-family:var(--f-mono);font-size:12.5px;color:var(--ink);text-align:right}
-.tbl-mix{grid-column:1/-1;display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--sunk)}
-.tbl-mix i{display:block;height:100%}
-.tbl-mix .G{background:var(--mark)}.tbl-mix .P{background:var(--accent)}.tbl-mix .I{background:var(--tbl-in)}
-.tbl-ck{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-2);cursor:pointer}
-.tbl-ck input{accent-color:var(--mark)}
-.tbl-key{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted)}
-.tbl-key i{display:inline-block;width:14px;height:3px;border-radius:2px;margin-right:5px;vertical-align:3px}
-
-.tbp-go{margin-top:12px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
-.tbp-btn{border:1px solid var(--ink);background:var(--ink);color:var(--surface);border-radius:999px;padding:7px 15px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
-.tbp-btn::after{content:"⤢";font-weight:400;opacity:.8}
-.tbp-btn:hover{opacity:.88}
-.tbp-go span{font-size:12.5px;color:var(--muted)}
-html.tbp-lock{overflow:hidden}
-.tbp{position:fixed;inset:0;z-index:1200;background:#1b2120;color:#fff;display:grid}
-.tbp-host{position:absolute;inset:0;overflow:hidden}
-.tbp-host>.sbx{position:absolute;inset:0;height:auto;border:0;border-radius:0}
-.tbp-top{position:absolute;left:0;right:0;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px 22px;background:linear-gradient(rgba(18,22,21,.82),rgba(18,22,21,.5) 62%,transparent);pointer-events:none}
-.tbp-top>*{pointer-events:auto}
-.tbp-ti{display:grid;gap:1px;margin-right:auto;min-width:0}
-.tbp-ti span{font:11.5px/1.4 var(--f-mono);letter-spacing:.1em;color:rgba(255,255,255,.72)}
-.tbp-ti b{font-size:16px;font-weight:600;line-height:1.4}
-.tbp-views{display:flex;flex-wrap:wrap;gap:5px}
-.tbp-views button,.tbp-x{border:1px solid rgba(255,255,255,.4);background:rgba(18,22,21,.55);color:#fff;border-radius:999px;padding:5px 12px;font:inherit;font-size:13px;line-height:1.4;cursor:pointer;backdrop-filter:blur(6px)}
-.tbp-views button:hover,.tbp-x:hover{border-color:#fff}
-.tbp-views button[aria-pressed="true"]{background:#fff;color:#1b2120;border-color:#fff}
-.tbp-x{font-weight:600}
-.tbp-cap{position:absolute;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:5;max-width:min(560px,calc(100% - 32px));margin:0;padding:10px 14px;border-radius:8px;background:rgba(18,22,21,.8);font-size:14px;line-height:1.7;backdrop-filter:blur(6px)}
-.tbp-cap:empty{display:none}
-.tbp-cap small{display:block;margin-top:4px;font-size:12px;color:rgba(255,255,255,.7)}
-.tbp-msg{position:absolute;inset:0;z-index:4;display:grid;place-items:center;font-size:14px;color:rgba(255,255,255,.8);pointer-events:none}
-.tbp-msg[hidden]{display:none}
-.tbp-key{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px;font-size:12px;color:rgba(255,255,255,.82)}
-.tbp-key i{display:inline-block;width:10px;height:10px;border-radius:50%;border:2.5px solid var(--c);margin-right:5px;vertical-align:-1px}
-.tbp-key.fill i{background:var(--c);border-color:rgba(255,255,255,.75);border-width:1.5px}
 `;
   document.head.appendChild(st);
 })();
-
-const tbxTags=t=>(t.feat?'<em class="tbx-ft">精选</em>':"")+(typeof TBX_TAG==="function"?TBX_TAG(t):"");
 
 const TBX_MAP={
   h:"做一块内容的五件事",
   steps:[{t:"定盘子",c:["区域结构与内容布局"]},{t:"带进去",c:["发现与引导"]},{t:"排体验",c:["节奏与演出","战斗空间","任务与解法"]},{t:"放进人",c:["同伴与带路","NPC 与系统"]},{t:"跑一遍再改",c:["验证与迭代"]}],
   base:"规范、工具与协作",
-  q:{"区域结构与内容布局":"内容放哪、放多少、怎么连起来","发现与引导":"玩家怎么看见、怎么找到","节奏与演出":"强弱怎么排，高潮放在哪","战斗空间":"在哪打，怎么打得起来","任务与解法":"目标怎么写，几种解法怎么区分","同伴与带路":"身边的人怎么走、怎么提示","NPC 与系统":"世界里的人怎么过日子、怎么反应","验证与迭代":"怎么知道做对了","规范、工具与协作":"怎么写下来，怎么和别人一起做"},
-  pick:["golden","guide-cost","bot-run","no-backtrack","pace-budget","prep-payoff"]
+  q:{"区域结构与内容布局":"内容放哪、放多少、怎么连起来","发现与引导":"玩家怎么看见、怎么找到","节奏与演出":"强弱怎么排，高潮放在哪","战斗空间":"在哪打，怎么打得起来","任务与解法":"目标怎么写，几种解法怎么区分","同伴与带路":"身边的人怎么走、怎么提示","NPC 与系统":"世界里的人怎么过日子、怎么反应","验证与迭代":"怎么知道做对了","规范、工具与协作":"怎么写下来，怎么和别人一起做"}
 };
 function tbxMapCat(c,one){
   const it=TOOLS.filter(t=>t.cat===c);
   return `<div class="tbm-cat${one?" one":""}"><div class="tbm-ch"><b>${c}</b><span>${TBX_MAP.q[c]||""}</span><i>${it.length} 条</i></div>
-    <div class="tbm-ms">${it.map(t=>`<a class="tbm-m${t.feat?" ft":""}" href="#toolbox.${t.id}" data-id="${t.id}" title="${TBX_G.E(t.t)}">${t.s||t.t}</a>`).join("")}</div></div>`;
+    <div class="tbm-ms">${it.map(t=>`<a class="tbm-m" href="#toolbox.${t.id}" data-id="${t.id}" title="${TBX_G.E(t.t)}">${t.s||t.t}</a>`).join("")}</div></div>`;
 }
 const tbxMapW=c=>TOOLS.filter(t=>t.cat===c).reduce((a,t)=>a+[...(t.s||t.t)].reduce((x,ch)=>x+(ch.charCodeAt(0)>255?12.5:7),0)+25,0);
 function tbxMapHTML(){
-  const nf=TOOLS.filter(t=>t.feat).length,six=TBX_MAP.pick.map(id=>tbxById(id)).filter(Boolean),S=TBX_MAP.steps;
+  const S=TBX_MAP.steps;
   const cols=cs=>{const w=cs.map(tbxMapW),avg=w.reduce((a,b)=>a+b,0)/w.length;return w.map(x=>`minmax(0,${Math.min(1.3,Math.max(.78,x/avg)).toFixed(2)}fr)`).join(" ")};
   const row=(t,cs,cls)=>`<div class="tbm-row${cls}"><div class="tbm-st">${t}</div><div class="tbm-cats${cs.length>1?" multi":""}"${cs.length>1?` style="--w:${cols(cs)}"`:""}>${cs.map(c=>tbxMapCat(c,cs.length===1)).join("")}</div></div>`;
-  return `<div class="tbx-top"><button type="button" class="tbx-back">‹ 方法列表</button><span class="eyebrow">方法地图 · ${TOOLS.length} 条 · 精选 ${nf} 条</span></div>
+  return `<div class="tbx-top"><button type="button" class="tbx-back">‹ 方法列表</button><span class="eyebrow">方法地图 · ${TOOLS.length} 条 · ${TB_CATS.length} 类</span></div>
     <div class="tbx-body tbm">
       <h2 class="h2" tabindex="-1">${TBX_MAP.h}</h2>
-      <p class="tbm-lede wide">九类方法归在五件事下面，${TOOLS.length} 条都在这张图上，点名字就打开。五件事大致从上往下，实际做的时候常常穿插着来。<span class="tbm-lg"><i class="tbm-m ft">精选</i>的 ${nf} 条做得更深：</span>有改前改后的对照、可以动手的示意和案例沙盘。</p>
+      <p class="tbm-lede wide">九类方法归在五件事下面，${TOOLS.length} 条都在这张图上，点名字就打开。五件事大致从上往下，实际做的时候常常穿插着来。</p>
       <div class="tbm-flow">${S.map(x=>row(x.t,x.c,"")).join("")}${row("贯穿全程",[TBX_MAP.base]," base")}</div>
-      <section class="tbm-panel"><h3 class="tbx-h">先看这六条</h3>
-        <div class="tbm-six">${six.map((t,i)=>`<a class="tbm-s" href="#toolbox.${t.id}" data-id="${t.id}"><span class="n">${tbxPad(i+1)}</span><b>${t.s||t.t}</b><span class="q">${t.q||t.r}</span></a>`).join("")}</div></section>
     </div>`;
 }
 function tbxMapMount(d){
@@ -2806,1046 +2784,14 @@ function tbxMapMount(d){
   });
 }
 
-function tbxFeatHTML(m){
-  const L=m.lab&&TBX_LAB[m.lab];
-  return `${m.ba?`<section><h3 class="tbx-h">改前 · 改后</h3><div class="tbl-ba"><div class="no"><b>改前</b><p>${m.ba[0]}</p></div><div class="ok"><b>改后</b><p>${m.ba[1]}</p></div></div></section>`:""}
-    ${L?`<section class="tbl" data-lab="${m.lab}"><div class="tbl-hd"><h3 class="tbx-h">动手试 · ${L.t}</h3><p>${L.hint}</p></div>${L.html(m)}</section>`:""}`;
-}
-function tbxFeatMount(d,m){
-  const L=m.lab&&TBX_LAB[m.lab],el=$(".tbl",d);if(!L||!el)return null;
-  try{return L.mount(el,m)||null}catch(e){console.error(e);return null}
-}
-const tblSvg=(tag,a)=>{const e=document.createElementNS("http://www.w3.org/2000/svg",tag);for(const k in a)e.setAttribute(k,a[k]);return e};
-const tblPt=(svg,ev)=>{const p=svg.createSVGPoint();p.x=ev.clientX;p.y=ev.clientY;const q=p.matrixTransform(svg.getScreenCTM().inverse());return [q.x,q.y]};
-
-const TBL_VIEW=[
-  {t:"弯道迎面",road:[[[[20,232],[270,232],[312,222],[330,190],[332,16]],22]],
-   blocks:[[60,96,214,90],[376,168,124,100],[376,20,124,108]],
-   path:[[30,232],[268,232],[310,222],[330,190],[332,40]],no:[168,191],ok:[371,228],
-   noT:"贴着来路的立面：路过时只在画面边上",okT:"弯道外侧，来路正对：一路都在画面中部"},
-  {t:"Y 字岔口",road:[[[[20,160],[250,160],[500,60]],22],[[[250,160],[500,260]],22]],
-   blocks:[[70,56,150,74],[70,190,150,74],[340,143,104,34]],
-   path:[[30,160],[250,160],[400,100]],no:[150,135],ok:[335,160],
-   noT:"岔口之前的路边：贴着身边滑过去",okT:"分叉正中：走哪一边之前都先看到它"},
-  {t:"出门第一眼",road:[[[[20,190],[500,190]],26],[[[260,102],[260,190]],18]],
-   blocks:[[170,14,180,86],[60,228,150,60],[232,228,116,60],[370,228,120,60]],
-   path:[[260,106],[260,172],[278,190],[380,190]],door:[248,100,272,100],no:[318,105],ok:[262,223],
-   noT:"门旁边的同一面墙：出门时在身后",okT:"出门正对的位置：推开门就在画面正中"}
-];
-const TBL_V={W:520,H:300,N:120,MID:15,WIDE:45,FAR:240,NEAR:120};
-function tblViewHTML(){
-  return `<div class="tbl-2 tbl-view">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><span class="tbl-lbl">场景</span>${TBL_VIEW.map((s,i)=>`<button type="button" class="tbl-btn" data-sc="${i}" aria-pressed="${i===0}">${s.t}</button>`).join("")}
-        <span class="tbl-sep"></span><span class="tbl-lbl">内容放在</span><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="true">改前</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="false">改后</button></div>
-      <svg class="tx map" viewBox="0 0 ${TBL_V.W} ${TBL_V.H}" role="img" aria-label="俯视的路口：玩家沿路线前进，扇形是画面中部，图钉是内容的位置，可以拖动"></svg>
-      <div class="tbl-bar b"><button type="button" class="tbl-btn v-play">▶ 跑一遍</button><input type="range" class="tbl-range" min="0" max="${TBL_V.N}" value="0" aria-label="玩家在路线上的位置"></div>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-num"><b class="v-pct">0<small>%</small></b><span>的路程里，内容在画面中部（不转镜头）</span></div>
-      <div class="tbl-strip"><svg viewBox="0 0 ${TBL_V.N} 10" preserveAspectRatio="none" aria-hidden="true"></svg><span><i>起点</i><i>终点</i></span></div>
-      <div class="tbl-now"><span>这一刻</span><span class="tbl-tag v-st"></span><span class="v-ang"></span></div>
-      <p class="tbl-say v-say"></p>
-      <p class="tbl-note">深色扇形是画面中部，浅色是整个画面；路线上加粗的一段，是内容留在画面中部的路程。数值只用来比较位置，不是项目数据。</p>
-    </aside></div>`;
-}
-function tblViewMount(el){
-  const G=TBX_G,svg=$("svg.tx",el),rng=$(".tbl-range",el),V=TBL_V,pf="tbv"+(++tbxFigN)+"-";
-  let sc=0,S=null,pin=[0,0],smp=[],hit=[],si=0,raf=0,drag=false,pre="no";
-  const dom={};
-  const inBlk=(p,b,pad=0)=>p[0]>b[0]-pad&&p[0]<b[0]+b[2]+pad&&p[1]>b[1]-pad&&p[1]<b[1]+b[3]+pad;
-  const cut=(a,b,r)=>{let t0=0,t1=1;const dx=b[0]-a[0],dy=b[1]-a[1],P=[-dx,dx,-dy,dy],Q=[a[0]-r[0],r[0]+r[2]-a[0],a[1]-r[1],r[1]+r[3]-a[1]];
-    for(let i=0;i<4;i++){if(P[i]===0){if(Q[i]<0)return false}else{const t=Q[i]/P[i];if(P[i]<0){if(t>t1)return false;if(t>t0)t0=t}else{if(t<t0)return false;if(t<t1)t1=t}}}return t1-t0>0.004};
-  const blocked=(a,b)=>S.blocks.some(r=>cut(a,b,[r[0]+1,r[1]+1,r[2]-2,r[3]-2]));
-  function sample(){
-    const p=S.path,L=[0];for(let i=1;i<p.length;i++)L.push(L[i-1]+Math.hypot(p[i][0]-p[i-1][0],p[i][1]-p[i-1][1]));
-    const tot=L[L.length-1],at=d=>{d=Math.max(0,Math.min(tot,d));let i=1;while(i<p.length-1&&L[i]<d)i++;const f=(d-L[i-1])/((L[i]-L[i-1])||1);return [p[i-1][0]+(p[i][0]-p[i-1][0])*f,p[i-1][1]+(p[i][1]-p[i-1][1])*f]};
-    smp=[];for(let k=0;k<=V.N;k++){const d=tot*k/V.N,a=at(d),b=d+16<=tot?at(d+16):null,c=b||at(d-16);
-      const h=b?Math.atan2(b[1]-a[1],b[0]-a[0]):Math.atan2(a[1]-c[1],a[0]-c[0]);smp.push([a[0],a[1],h])}
-  }
-  function stat(s){
-    const dx=pin[0]-s[0],dy=pin[1]-s[1],d=Math.hypot(dx,dy);let a=(Math.atan2(dy,dx)-s[2])*180/Math.PI;a=((a+540)%360)-180;
-    const blk=blocked([s[0],s[1]],pin);
-    return {a,d,v:Math.abs(a)>V.WIDE||d>V.FAR?0:blk?-1:Math.abs(a)<=V.MID?2:1};
-  }
-  const cone=(s,half,len)=>{const q=t=>[(s[0]+len*Math.cos(s[2]+t)).toFixed(1),(s[1]+len*Math.sin(s[2]+t)).toFixed(1)],r=half*Math.PI/180,a=q(-r),b=q(r);return `M${s[0].toFixed(1)} ${s[1].toFixed(1)}L${a[0]} ${a[1]}A${len} ${len} 0 0 1 ${b[0]} ${b[1]}z`};
-  function build(){
-    S=TBL_VIEW[sc];sample();
-    const stat0=[G.Rds(S.road),S.blocks.map(b=>G.R(b[0],b[1],b[2],b[3])),S.door?G.Dr(S.door[0],S.door[1],S.door[2],S.door[3]):""].flat(Infinity).join("");
-    svg.innerHTML=(G.DEFS+`<rect class="gnd" width="${V.W}" height="${V.H}"/>`+stat0).replace(/§(\w)/g,pf+"$1");
-    dom.path=svg.appendChild(tblSvg("path",{class:"v-path",d:G.D(S.path)}));
-    const p0=S.path[0],p1=S.path[1],lb=svg.appendChild(tblSvg("text",{class:"tx-t s",x:p0[0]+(p1[0]>p0[0]?-4:12),y:p0[1]+(p1[0]>p0[0]?-16:-2)}));lb.textContent="来路";
-    dom.hit=svg.appendChild(tblSvg("path",{class:"v-hit"}));
-    dom.wide=svg.appendChild(tblSvg("path",{class:"v-wide"}));
-    dom.mid=svg.appendChild(tblSvg("path",{class:"v-mid"}));
-    dom.los=svg.appendChild(tblSvg("line",{class:"v-los"}));
-    dom.pl=svg.appendChild(tblSvg("g",{class:"tx-pl"}));dom.pl.innerHTML=`<circle r="7"/><path d="M7.5 -3.4 L13 0 L7.5 3.4 z"/>`;
-    dom.pin=svg.appendChild(tblSvg("g",{class:"v-pin tx-pin",tabindex:"0",role:"button","aria-label":"内容的位置，可以拖动，也可以用方向键移动"}));
-    dom.pin.innerHTML=`<circle class="halo" r="20" cy="-10"/><path d="M0 0 C-1.8 -4.6 -7.5 -8 -7.5 -13.5 A7.5 7.5 0 1 1 7.5 -13.5 C7.5 -8 1.8 -4.6 0 0 z"/><circle cy="-13.5" r="2.8"/><text y="-27" text-anchor="middle">内容</text>`;
-    setPin(S[pre],true);
-  }
-  function setPin(p,keepPre){
-    let x=Math.max(10,Math.min(V.W-10,p[0])),y=Math.max(12,Math.min(V.H-8,p[1]));
-    for(const b of S.blocks){if(inBlk([x,y],b,3)){const ds=[[x-(b[0]-4),-1,0],[b[0]+b[2]+4-x,1,0],[y-(b[1]-4),0,-1],[b[1]+b[3]+4-y,0,1]].sort((m,n)=>m[0]-n[0])[0];x+=ds[1]*ds[0];y+=ds[2]*ds[0]}}
-    pin=[x,y];dom.pin.setAttribute("transform",`translate(${x.toFixed(1)} ${y.toFixed(1)})`);
-    if(!keepPre){pre="";}
-    $$("[data-pre]",el).forEach(b=>b.setAttribute("aria-pressed",b.dataset.pre===pre));
-    hit=smp.map(s=>stat(s).v===2);
-    let d="",pen=false;smp.forEach((s,i)=>{if(hit[i]){d+=(pen?"L":"M")+s[0].toFixed(1)+" "+s[1].toFixed(1);pen=true}else pen=false});
-    dom.hit.setAttribute("d",d||"M0 0");
-    const pct=Math.round(hit.filter(Boolean).length/hit.length*100);
-    $(".v-pct",el).innerHTML=pct+"<small>%</small>";
-    let segs="";for(let i=0;i<hit.length;i++)if(hit[i])segs+=`<rect class="seg" x="${i-.5}" y="0" width="1.05" height="10"/>`;
-    $(".tbl-strip svg",el).innerHTML=segs+`<rect class="cur" x="0" y="0" width="1.2" height="10"/>`;
-    $(".v-say",el).innerHTML=pre?`<b>${pre==="no"?"改前":"改后"}</b>：${pre==="no"?S.noT:S.okT}。`:pct>=30?"这个位置不用转镜头就能看到，适合放重要内容或它的提示。":pct>=10?"只在一小段路上进到画面中部，适合放次要内容。":"路过时几乎进不了画面中部：留给主动探索的玩家，或者换个位置。";
-    step(si);
-  }
-  function step(i){
-    si=Math.max(0,Math.min(V.N,i));const s=smp[si],r=stat(s);
-    dom.pl.setAttribute("transform",`translate(${s[0].toFixed(1)} ${s[1].toFixed(1)}) rotate(${(s[2]*180/Math.PI).toFixed(1)})`);
-    dom.wide.setAttribute("d",cone(s,V.WIDE,V.NEAR));dom.mid.setAttribute("d",cone(s,V.MID,V.FAR));
-    dom.los.setAttribute("x1",s[0]);dom.los.setAttribute("y1",s[1]);dom.los.setAttribute("x2",pin[0]);dom.los.setAttribute("y2",pin[1]);
-    dom.los.setAttribute("class","v-los"+(r.v===2?" on":r.v===-1?" blk":""));
-    const tg=$(".v-st",el);tg.className="tbl-tag v-st"+(r.v===2?" on":r.v===1?" edge":r.v===-1?" blk":"");
-    tg.textContent=r.v===2?"在画面中部":r.v===1?"在画面边上":r.v===-1?"被房子挡住":r.d>V.FAR?"太远，还看不清":"在画面外";
-    $(".v-ang",el).textContent="偏离视线 "+Math.round(Math.abs(r.a))+"°";
-    const c=$(".tbl-strip .cur",el);if(c)c.setAttribute("x",Math.min(V.N-1.2,si-.6));
-    if(+rng.value!==si)rng.value=si;
-  }
-  function play(on){
-    cancelAnimationFrame(raf);raf=0;const b=$(".v-play",el);b.textContent=on?"❚❚ 暂停":"▶ 跑一遍";b.dataset.on=on?"1":"";
-    if(!on)return;if(si>=V.N)si=0;let t0=performance.now(),i0=si;
-    const tick=t=>{const i=i0+(t-t0)/1000*V.N/6;if(i>=V.N){step(V.N);play(false);return}step(Math.round(i));raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick);
-  }
-  el.addEventListener("click",e=>{
-    const a=e.target.closest("[data-sc]");if(a){sc=+a.dataset.sc;$$("[data-sc]",el).forEach(b=>b.setAttribute("aria-pressed",b===a));play(false);si=0;if(!pre)pre="no";build();return}
-    const p=e.target.closest("[data-pre]");if(p){pre=p.dataset.pre;setPin(S[pre],true);return}
-    if(e.target.closest(".v-play"))play(!$(".v-play",el).dataset.on);
-  });
-  rng.addEventListener("input",()=>{play(false);step(+rng.value)});
-  svg.addEventListener("pointerdown",e=>{drag=true;try{svg.setPointerCapture(e.pointerId)}catch(x){}setPin(tblPt(svg,e));e.preventDefault()});
-  svg.addEventListener("pointermove",e=>{if(drag)setPin(tblPt(svg,e))});
-  const up=()=>{drag=false};svg.addEventListener("pointerup",up);svg.addEventListener("pointercancel",up);
-  svg.addEventListener("keydown",e=>{const k={ArrowLeft:[-6,0],ArrowRight:[6,0],ArrowUp:[0,-6],ArrowDown:[0,6]}[e.key];if(!k||!e.target.closest(".v-pin"))return;e.preventDefault();setPin([pin[0]+k[0],pin[1]+k[1]])});
-  build();
-  return ()=>{cancelAnimationFrame(raf)};
-}
-
-const TBL_GX=[["强","任务标记<br>必经对话"],["中","简单探索<br>范围目标"],["弱","没有指引<br>靠推理"],["无","机制组合<br>极隐蔽处"]], TBL_GY=["巨","高","中","低"];
-const TBL_DX=[3,2,1,0];
-function tblGridNodes(){
-  if(typeof ZX_CLIN==="undefined")return [];
-  const out=[];ZX_CLIN.forEach((P,qi)=>P.m.forEach((M,mi)=>out.push({q:qi,m:mi,n:M.k,full:M.n,route:P.s,c:P.c==="main"?"var(--ink)":(typeof ZX_CCOL!=="undefined"&&ZX_CCOL[P.c])||"var(--ink-2)",
-    x:Math.max(0,["强","中","弱","无"].indexOf(M.gx)),y:Math.max(0,TBL_GY.indexOf(M.gy)),f:M.f,p:M.p,g:M.g})));
-  return out;
-}
-function tblGridHTML(){
-  const N=tblGridNodes();if(!N.length)return `<p class="tbl-note">这块示意要用到新版支线页的数据，当前页面里没有载入。</p>`;
-  const routes=[...new Map(N.map(n=>[n.route,n.c])).entries()];
-  return `<div class="tbl-2 tbl-grid">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><span class="tbl-lbl">例：一个抓药事件的 ${N.length} 个节点</span><span class="tbl-sep"></span><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="false">改前：条条都标点</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="true">改后：这个事件的排法</button></div>
-      <div class="tbl-g" role="group" aria-label="引导强度和完成代价的格子图，可以把节点拖到别的格子">
-        <div class="corner">代价 ↑<br>引导 →</div>${TBL_DX.map(xi=>`<div class="ax"><b>${TBL_GX[xi][0]}</b>${TBL_GX[xi][1]}</div>`).join("")}
-        ${TBL_GY.map((y,yi)=>`<div class="ax y"><b>${y}</b></div>${TBL_DX.map(xi=>`<div class="tbl-cell" data-x="${xi}" data-y="${yi}" aria-label="引导${TBL_GX[xi][0]}、代价${y}"></div>`).join("")}`).join("")}
-      </div>
-      <div class="tbl-bar b tbl-leg">${routes.map(([r,c])=>`<span style="--c:${c}"><i></i>${r}</span>`).join("")}</div>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-sum"></div>
-      <ul class="tbl-diag"></ul>
-      <div class="tbl-info"></div>
-      <p class="tbl-note">节点取自新版支线的药堂抓药，“改后”是纸面流程图上的标注；“改前”是一种常见的做法，不是项目里出现过的版本。</p>
-    </aside></div>`;
-}
-function tblGridMount(el){
-  const N=tblGridNodes();if(!N.length)return null;
-  const base=N.map(n=>[n.x,n.y]);
-  const flat=N.map(n=>[0,n.q===0?0:/战斗|抢夺/.test(n.n)?1:2]);
-  let pre="ok",sel=-1,ghost=null,dragI=-1,moved=false,sx=0,sy=0;
-  const cell=(x,y)=>$(`.tbl-cell[data-x="${x}"][data-y="${y}"]`,el);
-  const names=a=>a.map(n=>"“"+n.n+"”").join("、");
-  function diag(){
-    const cnt={};N.forEach(n=>{const k=n.x+","+n.y;(cnt[k]=cnt[k]||[]).push(n)});
-    const ref=N.filter(n=>n.x===0&&n.y<=1),cheap=N.filter(n=>n.x===0&&n.y===3),hid=N.filter(n=>n.x>=2),dear=hid.filter(n=>n.y<=1);
-    const crowd=Object.entries(cnt).filter(([k,v])=>v.length>=3);
-    const rows=[
-      ref.length?[1,"有一条强引导、一定能完成的参照路线。"]:[0,"缺一条谁都找得到、一定能完成的参照路线。"],
-      cheap.length?[0,names(cheap)+"又好找又便宜：有了它，别的路线没人走。"]:[1,"没有又好找又便宜的捷径。"],
-      !hid.length?[0,"没有隐蔽的办法：多看一眼、多听一句的玩家得不到回报。"]:dear.length?[0,names(dear)+"难找还贵：找到了也不划算。"]:[1,`${hid.length} 个隐蔽的节点，代价都在中等以下：观察有回报。`],
-      crowd.length?[0,crowd.map(([k,v])=>{const [x,y]=k.split(",");return `引导${TBL_GX[x][0]}、代价${TBL_GY[y]}这一格挤了 ${v.length} 个`}).join("；")+"：玩家分不出差别。"]:[1,`节点分在 ${Object.keys(cnt).length} 格里，最挤的一格 ${Math.max(...Object.values(cnt).map(v=>v.length))} 个。`]
-    ];
-    $(".tbl-diag",el).innerHTML=rows.map(r=>`<li class="${r[0]?"":"x"}">${r[1]}</li>`).join("");
-    $(".tbl-sum",el).innerHTML=`<b>${rows.filter(r=>r[0]).length} / ${rows.length}</b>项检查通过`;
-    $$(".tbl-cell",el).forEach(c=>{const k=c.dataset.x+","+c.dataset.y,v=cnt[k]||[];c.classList.toggle("bad",v.length>=3||v.some(n=>(n.x===0&&n.y===3)||(n.x>=2&&n.y<=1)))});
-  }
-  function info(){
-    const n=N[sel],box=$(".tbl-info",el);
-    box.innerHTML=n?`<span><b>${n.full}</b>（${n.route}）· 引导${TBL_GX[n.x][0]} · 代价${TBL_GY[n.y]}</span><dl><dt>怎么发现</dt><dd>${n.f}</dd><dt>要付出</dt><dd>${n.p}</dd><dt>换来</dt><dd>${n.g}</dd></dl>`
-      :`<span>把节点拖到别的格子，看右边的检查怎么变；点一个节点，看它怎么被发现、要付出什么。</span>`;
-  }
-  function draw(){
-    $$(".tbl-cell",el).forEach(c=>c.innerHTML="");
-    N.forEach((n,i)=>{const b=document.createElement("button");b.type="button";b.className="tbl-chip";b.dataset.i=i;b.style.setProperty("--c",n.c);b.textContent=n.n;b.title=n.full+"（"+n.route+"）";b.setAttribute("aria-pressed",i===sel);cell(n.x,n.y).appendChild(b)});
-    $$("[data-pre]",el).forEach(b=>b.setAttribute("aria-pressed",b.dataset.pre===pre));
-    $$(".tbl-cell",el).forEach(c=>c.classList.toggle("pick",sel>=0));
-    diag();info();
-  }
-  const move=(i,x,y)=>{if(N[i].x===x&&N[i].y===y)return;N[i].x=x;N[i].y=y;pre="";draw()};
-  const cellAt=(x,y)=>{const t=document.elementFromPoint(x,y);return t&&t.closest?t.closest(".tbl-cell"):null};
-  const endDrag=()=>{if(ghost){ghost.remove();ghost=null}$$(".tbl-cell.over",el).forEach(c=>c.classList.remove("over"));$$(".tbl-chip.drag",el).forEach(c=>c.classList.remove("drag"));dragI=-1};
-  el.addEventListener("pointerdown",e=>{const c=e.target.closest(".tbl-chip");if(!c)return;dragI=+c.dataset.i;moved=false;sx=e.clientX;sy=e.clientY;try{c.setPointerCapture(e.pointerId)}catch(x){}});
-  el.addEventListener("pointermove",e=>{if(dragI<0)return;
-    if(!moved&&Math.hypot(e.clientX-sx,e.clientY-sy)<5)return;
-    if(!moved){moved=true;const c=$(`.tbl-chip[data-i="${dragI}"]`,el);ghost=c.cloneNode(true);ghost.classList.add("tbl-ghost");document.body.appendChild(ghost);c.classList.add("drag")}
-    ghost.style.left=e.clientX+"px";ghost.style.top=e.clientY+"px";
-    const over=cellAt(e.clientX,e.clientY);$$(".tbl-cell",el).forEach(c=>c.classList.toggle("over",c===over))});
-  el.addEventListener("pointerup",e=>{if(dragI<0)return;const i=dragI,was=moved,over=was?cellAt(e.clientX,e.clientY):null;endDrag();
-    if(was){if(over&&el.contains(over)){sel=i;move(i,+over.dataset.x,+over.dataset.y);draw()}}
-    else{sel=sel===i?-1:i;draw()}});
-  el.addEventListener("pointercancel",endDrag);
-  el.addEventListener("click",e=>{
-    const p=e.target.closest("[data-pre]");if(p){pre=p.dataset.pre;const src=pre==="no"?flat:base;N.forEach((n,i)=>{n.x=src[i][0];n.y=src[i][1]});draw();return}
-    const c=e.target.closest(".tbl-cell");if(c&&sel>=0&&!e.target.closest(".tbl-chip")){move(sel,+c.dataset.x,+c.dataset.y)}
-  });
-  el.addEventListener("keydown",e=>{const c=e.target.closest(".tbl-chip");if(!c)return;const k={ArrowLeft:[1,0],ArrowRight:[-1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!k)return;e.preventDefault();
-    const i=+c.dataset.i;sel=i;move(i,Math.max(0,Math.min(3,N[i].x+k[0])),Math.max(0,Math.min(3,N[i].y+k[1])));draw();const b=$(`.tbl-chip[data-i="${i}"]`,el);if(b)b.focus()});
-  draw();
-  return endDrag;
-}
-
-const TBX_BOT_JS="js/tbx-bot.js";
-function tbxNeedBot(){return new Promise((res,rej)=>{if(window.TBX_BOT)return res(window.TBX_BOT);
-  let s=document.querySelector("script[data-tbxbot]");if(!s){s=document.createElement("script");s.src=TBX_BOT_JS;s.async=true;s.setAttribute("data-tbxbot","1");document.head.appendChild(s)}
-  s.addEventListener("load",()=>window.TBX_BOT?res(window.TBX_BOT):rej(new Error(TBX_BOT_JS)));s.addEventListener("error",()=>rej(new Error(TBX_BOT_JS)))})}
-function tblBotPath(r,segs){const k=r.trk,out=[];let cur=null,d="";
-  for(let i=0;i<k.length;i+=4){const j=k[i+3][0]==="!";if(!cur||j){cur=[];out.push(cur)}cur.push([k[i+1],k[i+2]]);d+=(cur.length===1?"M":"L")+k[i+1]+" "+k[i+2]}
-  return segs?out:d}
-const TBL_BOT_TYPES=["直奔主线","剧情和人物","战斗和变强","好奇乱逛","清图收集","休闲看热闹"];
-function tblBotHTML(){
-  return `<div class="tbl-2 tbl-bot">
-    <div class="tbl-stage">
-      <div class="tbl-bar" role="group" aria-label="玩家类型">${TBL_BOT_TYPES.map((t,i)=>`<button type="button" class="tbl-btn" data-ty="${i}" aria-pressed="${i===3}">${t}</button>`).join("")}</div>
-      <div class="tbl-map"><svg viewBox="0 0 760 640" role="img" aria-label="学府区改编沙盘的平面：一局 Bot 的轨迹、看到和玩过的地点"></svg><div class="tbl-load">正在载入回放…</div></div>
-      <div class="tbl-bar b"><button type="button" class="tbl-btn b-play">▶ 播放</button><input type="range" class="tbl-range" min="0" max="3600" step="5" value="0" aria-label="时间"><span class="mono b-time" style="font-size:12px;color:var(--muted)">00:00 / 60:00</span>
-        <span class="tbl-sep"></span>${[30,60,120].map(v=>`<button type="button" class="tbl-btn" data-sp="${v}" aria-pressed="${v===60}">×${v}</button>`).join("")}</div>
-    </div>
-    <aside class="tbl-side">
-      <p class="tbl-say b-say"></p>
-      <div class="tbl-kv"><div><b class="b-see">0</b><span>看到的地点</span></div><div><b class="b-done">0</b><span>玩过的地点</span></div></div>
-      <dl class="tbl-dl b-dl"></dl>
-      <div class="tbl-key"><span><i style="background:var(--mark)"></i>地面</span><span><i style="background:var(--accent)"></i>跑酷</span><span><i style="background:var(--tbl-in)"></i>室内</span><span>空心点 = 还没看到</span></div>
-      <label class="tbl-ck"><input type="checkbox" class="b-all">叠上六类玩家的整局轨迹</label>
-      <p class="tbl-note">学府区改编沙盘里的回放：六类玩家各取一局，从车站出发的头一小时。数字是这一局的，只用来和同一张图的另一版比较。</p>
-    </aside></div>`;
-}
-function tblBotMount(el){
-  let dead=false,raf=0,D=null,ty=3,t=0,sp=60,playing=false,last=0;
-  const svg=$(".tbl-map svg",el),rng=$(".tbl-range",el),dom={};
-  const mm=s=>String(Math.floor(s/60)).padStart(2,"0")+":"+String(Math.floor(s%60)).padStart(2,"0");
-  function build(){
-    const F=D.frame;svg.setAttribute("viewBox",`${F[0]} ${F[1]} ${F[2]-F[0]} ${F[3]-F[1]}`);
-    const poly=(a,c)=>(a||[]).map(p=>`<polygon class="${c}" points="${p}"/>`).join("");
-    svg.innerHTML=poly(D.land,"land")+poly(D.river,"wat")+poly(D.waters,"wat")
-      +D.lanes.map(p=>`<polyline class="ln" points="${p}"/>`).join("")
-      +D.roads.map(r=>`<polyline class="rd" points="${r[2]}" stroke-width="${Math.max(4,r[1]*.55).toFixed(1)}"/>`).join("")
-      +`<g class="g-all" style="display:none">${D.runs.map(r=>`<path class="all" d="${tblBotPath(r)}"/>`).join("")}</g>`
-      +`<path class="trk G"/><path class="trk P"/><path class="trk I"/>`
-      +`<g class="g-poi">${Object.entries(D.pois).map(([id,p])=>`<circle class="poi" data-id="${id}" cx="${p[1]}" cy="${p[2]}" r="5"><title>${p[3]}</title></circle>`).join("")}</g>`
-      +`<circle class="me" r="7"/>`;
-    dom.trk={G:$(".trk.G",svg),P:$(".trk.P",svg),I:$(".trk.I",svg)};dom.me=$(".me",svg);dom.poi={};$$(".poi",svg).forEach(c=>dom.poi[c.dataset.id]=c);
-    $(".tbl-load",el).hidden=true;$(".tbl-load",el).style.display="none";
-    pick(ty);
-  }
-  function pick(i){
-    ty=i;const r=D.runs[i];$$("[data-ty]",el).forEach(b=>b.setAttribute("aria-pressed",+b.dataset.ty===i));
-    const k=r.k;
-    $(".b-dl",el).innerHTML=`<dt>这类玩家的占比</dt><dd>${Math.round(r.share*100)}%</dd>
-      <dt>多久一个新发现（中位数）</dt><dd>${k.gap} 秒</dd><dt>回头路占走路时间</dt><dd>${k.back}%</dd><dt>游玩和探索的时间比</dt><dd>${k.ratio} : 1</dd><dt>一小时做完</dt><dd>${k.done} 件</dd>
-      <dt>地面 · 跑酷 · 室内</dt><dd>${k.g} : ${k.p} : ${k.i}</dd><div class="tbl-mix"><i class="G" style="width:${k.g}%"></i><i class="P" style="width:${k.p}%"></i><i class="I" style="width:${k.i}%"></i></div>`;
-    seek(0);
-  }
-  function seek(v){
-    t=Math.max(0,Math.min(D.T,v));const r=D.runs[ty],k=r.trk,d={G:"",P:"",I:""};let pm="",px=k[1],py=k[2];
-    for(let i=0;i<k.length;i+=4){
-      let x=k[i+1],y=k[i+2];const jump=k[i+3][0]==="!";
-      if(k[i]>t){if(i>0&&!jump){const t0=k[i-4],f=(t-t0)/((k[i]-t0)||1);x=k[i-3]+(x-k[i-3])*f;y=k[i-2]+(y-k[i-2])*f;const m0=k[i-1].slice(-1);d[m0]+=(pm===m0?"L":"M"+px+" "+py+"L")+x.toFixed(1)+" "+y.toFixed(1);px=x;py=y}break}
-      if(i>0&&!jump){const m0=k[i-1].slice(-1);d[m0]+=(pm===m0?"L":"M"+px+" "+py+"L")+x+" "+y;pm=m0}else pm="";
-      px=x;py=y;
-    }
-    for(const m in d)dom.trk[m].setAttribute("d",d[m]||"M0 0");
-    dom.me.setAttribute("cx",px);dom.me.setAttribute("cy",py);
-    const seen=new Set(),done=new Set();
-    for(const s of r.see)if(s[0]<=t)seen.add(s[1]);
-    for(const a of r.act)if(a[1]<=t&&D.pois[a[3]]){done.add(a[3]);seen.add(a[3])}
-    for(const id in dom.poi){dom.poi[id].setAttribute("class","poi"+(done.has(id)?" done":seen.has(id)?" see":""))}
-    $(".b-see",el).textContent=seen.size;$(".b-done",el).textContent=done.size;
-    let say="";for(const s of r.say){if(s[0]<=t)say=s[1];else break}
-    $(".b-say",el).innerHTML=`<b>${r.typ}</b>：${say||"从车站出发"}`;
-    $(".b-time",el).textContent=mm(t)+" / "+mm(D.T);if(Math.abs(+rng.value-t)>=5)rng.value=Math.round(t/5)*5;
-  }
-  function play(on){playing=on;const b=$(".b-play",el);b.textContent=on?"❚❚ 暂停":"▶ 播放";cancelAnimationFrame(raf);raf=0;if(!on)return;if(t>=D.T)t=0;last=performance.now();
-    const tick=n=>{if(dead)return;const dt=Math.min(.1,(n-last)/1000);last=n;seek(t+dt*sp);if(t>=D.T){play(false);return}raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick)}
-  el.addEventListener("click",e=>{if(!D)return;
-    const a=e.target.closest("[data-ty]");if(a){const was=playing;play(false);pick(+a.dataset.ty);if(was)play(true);return}
-    const s=e.target.closest("[data-sp]");if(s){sp=+s.dataset.sp;$$("[data-sp]",el).forEach(b=>b.setAttribute("aria-pressed",b===s));return}
-    if(e.target.closest(".b-play"))play(!playing)});
-  rng.addEventListener("input",()=>{if(!D)return;play(false);seek(+rng.value)});
-  $(".b-all",el).addEventListener("change",e=>{const g=$(".g-all",svg);if(g)g.style.display=e.target.checked?"":"none"});
-  tbxNeedBot().then(d=>{if(dead)return;D=d;build();
-    const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){io.disconnect();if(!dead&&!playing&&t===0)play(true)}},{threshold:.5});io.observe(svg);dom.io=io;
-  }).catch(e=>{console.error(e);const l=$(".tbl-load",el);if(l)l.textContent="回放数据没有载入成功。"});
-  return ()=>{dead=true;cancelAnimationFrame(raf);if(dom.io)dom.io.disconnect()};
-}
-
-const TBX_LAB={
-  view:{t:"视野试看",hint:"拖动图钉换一个位置，再让玩家沿路线跑一遍：看它有多少路程留在画面中部。",html:tblViewHTML,mount:tblViewMount},
-  grid:{t:"格子图",hint:"把节点拖到别的格子（也可以先点节点、再点格子），右边的检查跟着变。",html:tblGridHTML,mount:tblGridMount},
-  bot:{t:"Bot 回放",hint:"换一类玩家，看同一张图上它走去哪、看到什么、在哪里折返。",html:tblBotHTML,mount:tblBotMount}
-};
-
-function tbxPeekBtn(m){
-  return `<div class="tbp-go"><button type="button" class="tbp-btn" data-peek="${m.id}">${m.peek.t}</button><span>原地铺满窗口，关闭后回到这里</span></div>`;
-}
-const tbxNeedJs=(src,attr,test)=>new Promise((res,rej)=>{if(test())return res();let s=document.querySelector(`script[${attr}]`);
-  if(!s){s=document.createElement("script");s.src=src;s.async=true;s.setAttribute(attr,"1");document.head.appendChild(s)}
-  s.addEventListener("load",()=>res());s.addEventListener("error",()=>rej(new Error(src)))});
-const tbxGL=()=>{try{const c=document.createElement("canvas");return !!(c.getContext("webgl2")||c.getContext("webgl"))}catch(e){return false}};
-const TBX_PEEK={
-  xfq:{name:"学府区改编沙盘",async boot(host,m){
-    await xqNeed(XQ_JS.data,"data-xq3dd",()=>!!window.XFQ3D_DATA);await xqNeed(XQ_JS.lib,"data-xq3d",()=>!!window.XFQ3D);
-    const P=await xqNeedPlan();xqCSS();
-    const bot=/^(bot|seen)$/.test(m.peek.k)?await tbxNeedBot():null;
-    const el=document.createElement("div");el.className="xq-host xq-sbx";host.appendChild(el);
-    const api=await XFQ3D.boot({host:el,data:window.XFQ3D_DATA,shadow:2048});
-    api.labels(false);if(api.pk&&api.pk.show)api.pk.show(false);
-    if(api.poi){api.poi.show(false);api.poi.routes(false);if(api.poi.quests)api.poi.quests.show(false)}
-    const ovl=xqOvl(el,api);
-    const gz=(x,y)=>{try{const h=api.poi&&api.poi.hAt3?api.poi.hAt3(x,y):null;return h?h[2]:0}catch(e){return 0}};
-    const fly=(cam,now)=>{try{api.unstand&&api.unstand()}catch(e){}now&&api.setNow?api.setNow(cam):api.flyTo(cam)};
-    const TOP={pos:[262,700,640],tgt:[262,330,10],fov:42};
-    let views=[];
-    if(m.peek.k==="gold"){
-      const COL=["#C9CFCB","#E9A23B",XQ_COL.anc],NAME=["还空着","放了氛围点","放了 POI"];
-      const stand=(g,back)=>{const path=(P.K.find(k=>k[0]===g[0])||P.K[0])[2];let bi=0,bd=1e9;path.forEach((p,i)=>{const d=Math.hypot(p[0]-g[2][0],p[1]-g[2][1]);if(d<bd){bd=d;bi=i}});
-        let acc=0,i=bi;while(i>0&&acc<back){acc+=Math.hypot(path[i][0]-path[i-1][0],path[i][1]-path[i-1][1]);i--}
-        const a=path[i];return {cam:{pos:[a[0],a[1],gz(a[0],a[1])+2.6],tgt:[g[2][0],g[2][1],gz(g[2][0],g[2][1])+2.2],fov:58},way:path.slice(Math.min(i+1,bi),bi+1)}};
-      const rings=P.gold.map(g=>({k:"ring",at:g[2],r:6.5,c:COL[g[3]],w:2.6,f:COL[g[3]],fo:.3}));
-      const one=(g,sub,way)=>[way.length>1?{k:"line",pts:way,c:"#fff",w:3,dash:"2 7",so:.9,halo:false}:null,{k:"ring",at:g[2],r:4.5,c:COL[g[3]],w:3,f:COL[g[3]],fo:.3},{k:"pin",at:g[2],t:"黄金位置",sub,c:COL[g[3]],dz:5}];
-      const key=`<span class="tbp-key">${[2,1,0].map(i=>`<span style="--c:${COL[i]}"><i></i>${NAME[i]} ${P.gold.filter(g=>g[3]===i).length} 处</span>`).join("")}</span>`;
-      const bend=P.gold.find(g=>g[0]==="K1"&&/弯道/.test(g[1])&&g[3]===2)||P.gold[0],fork=P.gold.find(g=>/Y/.test(g[1]))||P.gold[1];
-      views=[
-        {t:"全区 "+P.gold.length+" 处",cap:`沿重点路线找出的黄金位置：弯道迎面 ${P.gold.filter(g=>/弯道/.test(g[1])).length} 处，Y 字岔口正中 ${P.gold.filter(g=>/Y/.test(g[1])).length} 处。${key}`,go(now){fly(TOP,now);ovl.set(rings)}},
-        {t:"弯道迎面",cap:"从车站往学院走的主线上：路在前面拐弯，来路正对的这一处，不转镜头就在画面正中。",go(now){const v=stand(bend,26);fly(v.cam,now);ovl.set(one(bend,"弯道迎面",v.way))}},
-        {t:"Y 字岔口",cap:"路在前面分成两条：分叉正中的这一处，走哪一边之前都会先看到。",go(now){const v=stand(fork,30);fly(v.cam,now);ovl.set(one(fork,"Y 字岔口正中",v.way))}}
-      ];
-    }else if(m.peek.k==="bot"&&bot){
-      const COLS=["#E8761B","#8E44C9","#C8372D","#D4287E","#1F8F4E","#1C7DC4"];
-      views=bot.runs.map((r,i)=>({t:r.typ,cap:`“${r.typ}”这类玩家的一局，从车站出发的头一小时：回头路占走路时间的 ${r.k.back}%，做完 ${r.k.done} 件事。<small>亮点是这一局看到的地点。</small>`,go(now){
-        fly(TOP,now);
-        const seen=[...new Set(r.see.map(s=>s[1]))].map(id=>bot.pois[id]).filter(Boolean);
-        ovl.set(tblBotPath(r,true).filter(s=>s.length>1).map(pts=>({k:"line",pts,c:COLS[i],w:4})).concat(seen.map(p=>({k:"dot",at:[p[1],p[2]],r:4.5,f:"#fff",s:COLS[i],sw:2.4}))))}}));
-    }else if(m.peek.k==="case"){
-      const SRC={XQ_SEE:typeof XQ_SEE!=="undefined"?XQ_SEE:[],XQ_HOLDV:typeof XQ_HOLDV!=="undefined"?XQ_HOLDV:[],XQ_VERT:typeof XQ_VERT!=="undefined"?XQ_VERT:[]};
-      views=(m.peek.v||[]).map(([a,i,t])=>{const x=(SRC[a]||[])[i];if(!x)return null;
-        return {t:t||x.ty,cap:`${x.t}<small>${x.where}：${x.cap}</small>`,go(now){
-          if(api.pk){try{api.pk.show(!!x.pk);api.pk.mark(x.pk&&x.pkm?api.pk.find(x.pkm):null)}catch(e){}}
-          let L=[];try{L=x.ovl?x.ovl(P):[]}catch(e){console.error(e)}try{ovl.ctx(null)}catch(e){}ovl.set(L);
-          if(x.a&&api.tpsAnchor)api.tpsAnchor(x.a,Object.assign({plan:true,dp:0},x.o||{}),!!now);
-          else if(x.tps&&api.tps)api.tps(x.tps,!!now);
-          else if(x.cam)fly(x.cam,now)}}}).filter(Boolean);
-    }else if(m.peek.k==="seen"&&bot){
-      const ids=Object.keys(bot.pois),seen=new Set(),done=new Set();
-      bot.runs.forEach(r=>{r.see.forEach(s=>seen.add(s[1]));r.act.forEach(a=>{if(a[3])done.add(a[3])})});
-      const dot=(id,f,s,r)=>{const p=bot.pois[id];return {k:"dot",at:[p[1],p[2]],r,f,s,sw:2}};
-      const cap=t=>`学府区改编沙盘里的 ${ids.length} 处内容，六类玩家各跑一局、头一小时：看到过 ${ids.filter(i=>seen.has(i)).length} 处，停下来做过 ${ids.filter(i=>done.has(i)).length} 处。<small>${t}</small>`;
-      views=[
-        {t:"全部内容",cap:cap("每个圆点是一处内容：数点位，只知道放了多少。"),go(now){fly(TOP,now);ovl.set(ids.map(i=>dot(i,"#fff","#2B3331",5.5)))}},
-        {t:"看到过的",cap:cap("亮的是至少一局里看到过的，灰的是六局都没看到的。"),go(now){fly(TOP,now);ovl.set(ids.map(i=>seen.has(i)?dot(i,"#E9A23B","#fff",6):dot(i,"#8E9692","#fff",4)))}},
-        {t:"停下来做过的",cap:cap("看得到不等于会停下：红的是至少一局里停下来做过的。"),go(now){fly(TOP,now);ovl.set(ids.map(i=>done.has(i)?dot(i,"#C8372D","#fff",6.5):seen.has(i)?dot(i,"#E9A23B","#fff",4.5):dot(i,"#8E9692","#fff",3.5)))}}];
-    }
-    return {views,first:m.peek.k==="bot"?3:0,dispose(){try{ovl.run(false)}catch(e){}try{api.dispose()}catch(e){}}};
-  }},
-  zx:{name:"新版支线 · 药堂抓药",async boot(host,m){
-    await tbxNeedJs(ZX_SBX_JS,"data-zx3d",()=>!!window.ZX3D);
-    if(!ZX3D.CLINIC_Q)throw new Error("clinic");
-    const el=document.createElement("div");el.className="sbx live";host.appendChild(el);
-    const api=ZX3D.mount(el,{view:"ov",area:"clinic",env:ZX3D.CLINIC_ENV});
-    const show=ZX3D.createShow(api,el,{quests:ZX3D.CLINIC_Q,amb:ZX3D.CLINIC_AMB,ovRoutes:true,ovEnv:ZX3D.CLINIC_ENV,names:ZX_CLIN.map(P=>P.m.map(M=>M.k)),onQuest(){},onMethod(){}});
-    const wake=()=>{api.animUntil=Math.max(api.animUntil||0,performance.now()+9000)};
-    if(api.onUserStart)api.onUserStart(wake);
-    const col=c=>c==="main"?"#2B3331":(typeof ZX_CCOL!=="undefined"&&ZX_CCOL[c])||"#fff";
-    const views=[{t:"五条路",cap:`目标只有一个：拿到药。五条路、${ZX_CLIN.reduce((n,P)=>n+P.m.length,0)} 个入口，各有各的引导强弱和代价。<span class="tbp-key fill">${ZX_CLIN.map(P=>`<span style="--c:${col(P.c)}"><i></i>${P.s}</span>`).join("")}</span>`,go(){show.setQuest(-1,{fly:true});wake()}}]
-      .concat(ZX_CLIN.map((P,k)=>({t:P.s,cap:`${P.d}<small>${P.m.map(M=>`${M.n}：引导${M.gx}、代价${M.gy}`).join("；")}</small>`,go(){show.setQuest(k,{fly:true});wake()}})));
-    return {views,first:0,dispose(){try{api.dispose()}catch(e){}}};
-  }}
-};
-let tbxPeekOn=null;
-function tbxPeekClose(){
-  const P=tbxPeekOn;if(!P)return;tbxPeekOn=null;P.dead=true;
-  document.removeEventListener("keydown",P.key,true);
-  try{P.rt&&P.rt.dispose()}catch(e){console.error(e)}
-  P.el.remove();document.documentElement.classList.remove("tbp-lock");
-  if(P.back&&P.back.isConnected)P.back.focus({preventScroll:true});
-}
-function tbxPeekOpen(m,btn){
-  if(tbxPeekOn)return;const R=TBX_PEEK[m.peek.rt];if(!R)return;
-  const el=document.createElement("div");el.className="tbp";el.setAttribute("role","dialog");el.setAttribute("aria-modal","true");el.setAttribute("aria-label",m.peek.t);
-  el.innerHTML=`<div class="tbp-host"></div><div class="tbp-msg">正在载入 3D 沙盘…</div>
-    <div class="tbp-top"><div class="tbp-ti"><span>${R.name} · 保密改编的白模</span><b>${m.s||m.t}</b></div><div class="tbp-views" role="group" aria-label="看哪里"></div><button type="button" class="tbp-x" title="关闭沙盘，回到刚才的位置（Esc）">关闭 ✕</button></div>
-    <p class="tbp-cap" aria-live="polite"></p>`;
-  const P={el,back:btn,rt:null,dead:false,key(e){if(e.key==="Escape"){e.preventDefault();e.stopPropagation();tbxPeekClose()}}};
-  tbxPeekOn=P;document.body.appendChild(el);document.documentElement.classList.add("tbp-lock");
-  document.addEventListener("keydown",P.key,true);
-  const msg=$(".tbp-msg",el),vb=$(".tbp-views",el),cap=$(".tbp-cap",el);
-  $(".tbp-x",el).addEventListener("click",tbxPeekClose);$(".tbp-x",el).focus({preventScroll:true});
-  const fail=t=>{msg.hidden=false;msg.textContent=t};
-  if(!tbxGL()){fail("这台设备显示不了实时 3D。可以到案例页看沙盘的静态截图。");return}
-  R.boot($(".tbp-host",el),m).then(rt=>{
-    if(P.dead){try{rt.dispose()}catch(e){}return}
-    P.rt=rt;msg.hidden=true;
-    const show=(i,now)=>{const v=rt.views[i];if(!v)return;$$("button",vb).forEach((b,j)=>b.setAttribute("aria-pressed",j===i));cap.innerHTML=v.cap||"";try{v.go(now)}catch(e){console.error(e)}};
-    vb.innerHTML=rt.views.map((v,i)=>`<button type="button" data-v="${i}" aria-pressed="false">${v.t}</button>`).join("");
-    vb.addEventListener("click",e=>{const b=e.target.closest("button[data-v]");if(b)show(+b.dataset.v)});
-    show(rt.first||0,true);
-  }).catch(e=>{console.error(e);if(!P.dead)fail("3D 沙盘没有载入成功，可以到案例页里看。")});
-}
-function tbxPeekClick(e){
-  const b=e.target.closest("[data-peek]");if(!b)return;
-  const m=tbxById(b.dataset.peek);if(m&&m.peek)tbxPeekOpen(m,b);
-}
-(function(){
-  if(document.getElementById("tbx3-css")) return;
-  const st=document.createElement("style");st.id="tbx3-css";
-  st.textContent=`
-.tbl-strip em{font-style:normal;font-size:12px;color:var(--ink-2)}
-.tbl-rows{display:grid;gap:7px}
-.tbl-row{display:grid;grid-template-columns:92px minmax(0,1fr) 52px;gap:8px;align-items:center;font-size:12.5px;color:var(--ink-2)}
-.tbl-row .tbl-range{min-width:0;width:100%}
-.tbl-row output{font:600 12.5px/1 var(--f-mono);color:var(--ink);text-align:right;white-space:nowrap}
-.tbl-cmp{width:100%;border-collapse:collapse;font-size:13px;color:var(--ink-2)}
-.tbl-cmp th,.tbl-cmp td{padding:6px 8px 6px 0;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.5}
-.tbl-cmp th{font:400 11.5px/1.5 var(--f-mono);color:var(--muted);letter-spacing:.06em;white-space:nowrap}
-.tbl-cmp td:first-child{color:var(--ink)}
-.tbl-cmp td.y{color:var(--accent);font-weight:600;white-space:nowrap}.tbl-cmp td.n{color:var(--tbx-bad);white-space:nowrap}
-.tbl-diag li.q::before{content:"·";color:var(--muted)}
-.tbl-diag li.q{color:var(--muted)}
-.tbl-states{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
-.tbl-states .ar{color:var(--muted);font-size:12px}
-.tbl-acts{display:flex;flex-wrap:wrap;gap:5px}
-.tbl-btn:disabled{opacity:.4;cursor:default}
-.tbl-btn:disabled:hover{border-color:var(--line)}
-.tbl-cks{display:grid;gap:7px}
-.tbl-cks .tbl-lbl{margin:0}
-.tbl svg .l-los{stroke:var(--muted);stroke-width:1.2;stroke-dasharray:4 4}
-.tbl svg .l-los.on{stroke:var(--mark);stroke-dasharray:none;stroke-width:1.6}
-.tbl svg .l-los.blk{stroke:var(--tbx-bad)}
-.tbl svg .l-rep{fill:none;stroke:var(--tbx-bad);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;opacity:.35}
-.tbl svg .l-hot{cursor:pointer}
-.tbl svg .l-cand circle{fill:var(--surface);stroke:var(--muted);stroke-width:1.5;stroke-dasharray:3 3}
-.tbl svg .l-cand text{font-size:10.5px;fill:var(--muted);text-anchor:middle;font-weight:600}
-.tbl svg .l-cand.on circle{fill:var(--mark);stroke:var(--mark);stroke-dasharray:none}
-.tbl svg .l-cand.on text{fill:#fff}
-.tbl svg .l-cand:hover circle{stroke:var(--ink)}
-.tbl svg .l-dim{opacity:.28}
-.tbl svg .l-ring{fill:var(--tbx-bad);fill-opacity:.08;stroke:var(--tbx-bad);stroke-width:1.2;stroke-dasharray:3 4}
-.tbl svg .l-vp{cursor:grab}
-.tbl svg .l-vp .halo{fill:var(--mark);opacity:.14}
-.tbl svg .l-vp text,.tbl svg .l-tag{font-size:11px;fill:var(--ink);paint-order:stroke;stroke:var(--surface);stroke-width:3px;font-weight:600}
-.tbl svg .l-ref{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:4 4}
-.tbl svg .l-eff{fill:var(--mark);fill-opacity:.16;stroke:var(--mark);stroke-width:2}
-.tbl svg .l-cut{fill:var(--tbx-bad);fill-opacity:.1;stroke:none}
-.tbl svg .l-ax{stroke:var(--line);stroke-width:1}
-.tbl svg .l-col{fill:var(--sunk);opacity:.6}
-.tbl svg .l-warn{fill:var(--tbx-bad);fill-opacity:.12}
-.tbl svg .l-curve{fill:none;stroke:var(--mark);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
-.tbl svg .l-area{fill:var(--mark);opacity:.1}
-.tbl svg .l-h{fill:var(--surface);stroke:var(--mark);stroke-width:2.6;cursor:ns-resize}
-.tbl svg .l-h:focus-visible{outline:none;stroke:var(--ink);stroke-width:3.4}
-.tbl svg .l-hz{fill:transparent;cursor:ns-resize}
-.tbl svg .l-ev{fill:var(--surface);stroke:var(--line);stroke-width:1.2}
-.tbl svg .l-ev.on{fill:var(--mark-soft);stroke:var(--mark)}
-.tbl svg .l-ev.off{stroke-dasharray:4 4;opacity:.55}
-.tbl svg .l-cur{stroke:var(--ink);stroke-width:1.6}
-.tbl svg .l-mv{transition:transform .55s ease,opacity .4s ease}
-.tbl svg .l-n circle{fill:var(--surface);stroke:var(--ink-2);stroke-width:1.6;transition:fill .3s,stroke .3s}
-.tbl svg .l-n.att circle{fill:var(--tbx-bad);stroke:var(--tbx-bad)}
-.tbl svg .l-n.warn circle{fill:var(--tbx-bad-soft);stroke:var(--tbx-bad)}
-.tbl svg .l-n.flee circle{fill:var(--accent-soft);stroke:var(--accent)}
-.tbl svg .l-n.fire circle{fill:var(--mark);stroke:var(--mark)}
-.tbl svg .l-n text{font-size:10px;text-anchor:middle;fill:var(--ink);font-weight:600}
-.tbl svg .l-bub rect{fill:var(--surface);stroke:var(--line);stroke-width:1}
-.tbl svg .l-bub text{font-size:11.5px;fill:var(--ink)}
-.tbl-stack{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--sunk)}
-.tbl-stack i{display:block;height:100%;transition:width .3s}
-.tbl-stack .att{background:var(--tbx-bad)}.tbl-stack .warn{background:color-mix(in srgb,var(--tbx-bad) 45%,var(--surface))}.tbl-stack .watch{background:var(--muted)}.tbl-stack .flee{background:var(--accent)}.tbl-stack .fire{background:var(--mark)}
-.tbl-lg{display:flex;flex-wrap:wrap;gap:3px 12px;font-size:12px;color:var(--ink-2)}
-.tbl-lg i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:-1px}
-.tbl-lg .att{background:var(--tbx-bad)}.tbl-lg .warn{background:color-mix(in srgb,var(--tbx-bad) 45%,var(--surface))}.tbl-lg .watch{background:var(--muted)}.tbl-lg .flee{background:var(--accent)}.tbl-lg .fire{background:var(--mark)}
-.tbl-meter{position:relative;height:8px;border-radius:4px;background:var(--sunk)}
-.tbl-meter b{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--accent);transition:width .4s}
-.tbl-meter u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--tbx-bad)}
-@media (prefers-reduced-motion:reduce){.tbl svg .l-mv{transition:none}}
-`;
-  document.head.appendChild(st);
-})();
-
-const tblCut=(a,b,r)=>{let t0=0,t1=1;const dx=b[0]-a[0],dy=b[1]-a[1],P=[-dx,dx,-dy,dy],Q=[a[0]-r[0],r[0]+r[2]-a[0],a[1]-r[1],r[1]+r[3]-a[1]];
-  for(let i=0;i<4;i++){if(P[i]===0){if(Q[i]<0)return false}else{const t=Q[i]/P[i];if(P[i]<0){if(t>t1)return false;if(t>t0)t0=t}else{if(t<t0)return false;if(t<t1)t1=t}}}return t1-t0>0.004};
-const tblPre=(el,cur)=>$$("[data-pre]",el).forEach(b=>b.setAttribute("aria-pressed",b.dataset.pre===cur));
-const tblSvgSet=(svg,pf,body)=>{svg.innerHTML=(TBX_G.DEFS+`<rect class="gnd" width="${svg.viewBox.baseVal.width}" height="${svg.viewBox.baseVal.height}"/>`+[].concat(body).flat(Infinity).join("")).replace(/§(\w)/g,pf+"$1")};
-function tblRun(el,n,dur,step){
-  const b=$(".l-play",el),r=$(".l-pos",el);let raf=0,i=0,on=false;const lab=b?b.textContent:"";
-  const set=k=>{i=Math.max(0,Math.min(n,k));if(r&&+r.value!==Math.round(i))r.value=Math.round(i);step(i)};
-  const play=v=>{cancelAnimationFrame(raf);on=v;if(b)b.textContent=v?"❚❚ 暂停":lab;if(!v)return;if(i>=n)i=0;const t0=performance.now(),i0=i;
-    const tick=t=>{const k=i0+(t-t0)/1000*n/dur;if(k>=n){set(n);play(false);return}set(k);raf=requestAnimationFrame(tick)};raf=requestAnimationFrame(tick)};
-  if(b)b.addEventListener("click",()=>play(!on));
-  if(r)r.addEventListener("input",()=>{play(false);set(+r.value)});
-  return {set,play,get i(){return i},stop(){cancelAnimationFrame(raf)}};
-}
-const tblDiag=(el,rows)=>{$(".tbl-diag",el).innerHTML=rows.map(r=>`<li class="${r[0]===1?"":r[0]===0?"x":"q"}">${r[1]}</li>`).join("");
-  const s=$(".tbl-sum",el);if(s){const j=rows.filter(r=>r[0]!==2);s.innerHTML=`<b>${j.filter(r=>r[0]===1).length} / ${j.length}</b>项检查通过`}};
-
-function tblRevealHTML(){
-  return `<div class="tbl-2 tbl-rv">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><span class="tbl-lbl">路边的遮挡</span><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="false">改前：没有遮挡</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="true">改后：树种到坡底</button>
-        <span class="tbl-sep"></span><span class="tbl-lbl">树种到哪</span><input type="range" class="tbl-range rv-len" min="0" max="290" step="5" value="230" aria-label="路边的树从坡顶一直种到哪里"></div>
-      <svg class="tx map" viewBox="0 0 520 300" role="img" aria-label="俯视的一段下坡路：玩家从坡顶走到岔路口，路边的树挡住较近的第二个目标"></svg>
-      <div class="tbl-bar b"><button type="button" class="tbl-btn l-play">▶ 走一遍</button><input type="range" class="tbl-range l-pos" min="0" max="100" value="0" aria-label="玩家在下坡路上的位置"></div>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-num"><b class="rv-pct"></b><span>的路程里，两个目标同时在画面里</span></div>
-      <div class="tbl-strip"><em>主要地标</em><svg class="rv-a" viewBox="0 0 101 10" preserveAspectRatio="none" aria-hidden="true"></svg></div>
-      <div class="tbl-strip"><em>第二个目标</em><svg class="rv-b" viewBox="0 0 101 10" preserveAspectRatio="none" aria-hidden="true"></svg><span><i>坡顶</i><i>岔路口</i></span></div>
-      <p class="tbl-say rv-say"></p>
-      <p class="tbl-note">两条带子标出每个目标在哪一段路上看得见。主要地标又高又大，越过树冠一直看得到；第二个目标比树矮，会被挡住。位置和数值只用来比较做法。</p>
-    </aside></div>`;
-}
-function tblRevealMount(el){
-  const G=TBX_G,svg=$("svg.tx",el),len=$(".rv-len",el),pf="tbr"+(++tbxFigN)+"-";
-  const Y=150,X0=40,X1=400,A=[470,151],B=[470,52],TY=112,T0=150;
-  let L=230,si=0,pre="ok";
-  const xa=i=>X0+(X1-X0)*i/100;
-  const seeB=x=>{const a=Math.atan2(Y-B[1],B[0]-x)*180/Math.PI;if(a>60)return false;const xc=x+(B[0]-x)*(Y-TY)/(Y-B[1]);return !(L>0&&xc>=T0-6&&xc<=T0+L+6)};
-  function draw(){
-    const trees=[];for(let x=T0;x<=T0+L;x+=18)trees.push([x,TY+(Math.round(x/18)%2?-3:3),8]);
-    const vis=[];for(let i=0;i<=100;i++)vis.push(seeB(xa(i)));
-    const first=vis.indexOf(true),both=Math.round(vis.filter(Boolean).length/vis.length*100),x=xa(si),vb=vis[si];
-    tblSvgSet(svg,pf,[G.Rds([[[[20,Y],[X1,Y]],20],[[[X1,Y],[508,94]],18],[[[X1,Y],[508,216]],18]]),
-      G.R(470,130,42,42,{v:"hi",t:"主要\n地标"}),G.R(447,30,48,42,{v:"mk",t:"第二个\n目标"}),
-      G.R(60,196,120,56),G.R(210,196,130,56),G.R(36,30,84,44),
-      L>0?G.Trs(trees):"",G.T(X0-10,Y-18,"坡顶",{s:1,c:"mut"}),G.T(X1,Y+32,"岔路口",{s:1,c:"mut",a:"m"}),
-      `<line class="l-los on" x1="${x}" y1="${Y}" x2="${A[0]}" y2="${A[1]}"/>`,
-      `<line class="l-los${vb?" on":" blk"}" x1="${x}" y1="${Y}" x2="${B[0]-8}" y2="${B[1]+20}"/>`,
-      G.Cn(x,Y,0,120,64),G.Pl(x,Y,0)]);
-    const seg=a=>a.map((v,i)=>v?`<rect class="seg" x="${i}" y="0" width="1.05" height="10"/>`:"").join("")+`<rect class="cur" x="${Math.min(99.8,si)}" y="0" width="1.2" height="10"/>`;
-    $(".rv-a",el).innerHTML=seg(vis.map(()=>true));$(".rv-b",el).innerHTML=seg(vis);
-    $(".rv-pct",el).innerHTML=both+"<small>%</small>";
-    $(".rv-say",el).innerHTML=(pre?`<b>${pre==="no"?"改前":"改后"}</b>：`:"")+(first<0?"树一直挡到岔路口：到了要选路的地方还看不到第二个目标，揭示得太晚。"
-      :first<=10?"一上坡顶，两个目标就同时在画面里，互相抢注意力；往下走的一路没有新的东西可看。"
-      :first<70?`走到 ${first}% 的地方第二个目标就露出来了，离岔路口还远，后半程的注意力被分走。`
-      :`下坡的大半程，画面里只有主要地标；走到 ${first}% 的地方、快到岔路口时，第二个目标才出现，这时再让玩家选往哪走。`);
-  }
-  const run=tblRun(el,100,5,i=>{si=Math.round(i);draw()});
-  el.addEventListener("click",e=>{const p=e.target.closest("[data-pre]");if(!p)return;pre=p.dataset.pre;L=pre==="no"?0:230;len.value=L;tblPre(el,pre);draw()});
-  len.addEventListener("input",()=>{L=+len.value;pre="";tblPre(el,pre);draw()});
-  draw();
-  return ()=>run.stop();
-}
-
-const TBL_RT={
-  N:{S:[70,250],A1:[240,250],A2:[440,250],B1:[440,120],X:[440,36],I1:[240,196],T:[240,90],I3:[360,120]},
-  E:[["S","A1"],["A1","A2"],["A2","B1"],["B1","X"],["A1","I1"],["I1","T"],["T","I3"],["I3","B1",1]],
-  D:{S:["回到接取的人",[92,228]],A1:["正门外的路边",[264,230]],B1:["东门外的路上",[464,120]]},
-  BEST:0
-};
-function tblRouteHTML(){
-  const D=TBL_RT.D;
-  return `<div class="tbl-2 tbl-rt">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="true">改前</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="false">改后</button>
-        <span class="tbl-sep"></span><span class="tbl-lbl">门</span><button type="button" class="tbl-btn" data-door="0" aria-pressed="true">只有正门</button><button type="button" class="tbl-btn" data-door="1" aria-pressed="false">加一个东门</button></div>
-      <svg class="tx map" viewBox="0 0 520 300" role="img" aria-label="俯视的一条支线：从接取的人出发，进大地点完成目标，到交付点，再去下一个去处；重复走的路段标成红色"></svg>
-      <div class="tbl-bar b"><button type="button" class="tbl-btn l-play">▶ 走一遍</button><span class="tbl-sep"></span><span class="tbl-lbl">交付点</span>${Object.keys(D).map(k=>`<button type="button" class="tbl-btn" data-d="${k}" aria-pressed="false">${D[k][0]}</button>`).join("")}</div>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-num"><b class="rt-pct"></b><span>的路程是走过的路（重复路段）</span></div>
-      <div class="tbl-kv"><div><b class="rt-x"></b><span>全程是不折返走法的几倍</span></div><div><b class="rt-n"></b><span>段路走了两遍以上</span></div></div>
-      <p class="tbl-say rt-say"></p>
-      <p class="tbl-note">换门和交付点，路线按最短的走法重算。距离按图上的长度算，只用来比较几种排法。</p>
-    </aside></div>`;
-}
-function tblRouteMount(el){
-  const G=TBX_G,R=TBL_RT,N=R.N,svg=$("svg.tx",el),pf="tbo"+(++tbxFigN)+"-";
-  let door=0,del="S",pre="no",pts=[],lens=[],tot=0;
-  const dist=(a,b)=>Math.hypot(N[a][0]-N[b][0],N[a][1]-N[b][1]);
-  function sp(a,b,dr){
-    const adj={};R.E.forEach(([u,v,o])=>{if(o&&!dr)return;(adj[u]=adj[u]||[]).push(v);(adj[v]=adj[v]||[]).push(u)});
-    const d={},prev={},Q=new Set(Object.keys(N));Object.keys(N).forEach(k=>d[k]=1e9);d[a]=0;
-    while(Q.size){let u=null;Q.forEach(k=>{if(u===null||d[k]<d[u])u=k});Q.delete(u);if(u===b)break;(adj[u]||[]).forEach(v=>{const nd=d[u]+dist(u,v);if(nd<d[v]){d[v]=nd;prev[v]=u}})}
-    const p=[b];while(p[0]!==a)p.unshift(prev[p[0]]);return p;
-  }
-  const plan=(dr,dl)=>{const s=sp("S","T",dr).concat(sp("T",dl,dr).slice(1),sp(dl,"X",dr).slice(1));let t=0;const cnt={};
-    for(let i=1;i<s.length;i++){const k=[s[i-1],s[i]].sort().join("-");cnt[k]=(cnt[k]||0)+1;t+=dist(s[i-1],s[i])}
-    let uniq=0;Object.keys(cnt).forEach(k=>{const [a,b]=k.split("-");uniq+=dist(a,b)});return {s,t,cnt,rep:t-uniq}};
-  if(!R.BEST)R.BEST=plan(1,"B1").t;
-  function draw(){
-    const P=plan(door,del),rep=Object.keys(P.cnt).filter(k=>P.cnt[k]>1);
-    pts=P.s.map(k=>N[k]);lens=[0];for(let i=1;i<pts.length;i++)lens.push(lens[i-1]+Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]));tot=lens[lens.length-1];
-    tblSvgSet(svg,pf,[G.Rds([[[[20,250],[500,250]],20],[[[440,250],[440,20]],18]]),
-      G.R(130,50,230,146,{v:"fl"}),G.Wl([[130,50],[360,50]]),G.Wl([[130,50],[130,196]]),G.Wl([[130,196],[226,196]]),G.Wl([[254,196],[360,196]]),
-      door?[G.Wl([[360,50],[360,108]]),G.Wl([[360,132],[360,196]]),G.Dr(360,108,360,132)]:G.Wl([[360,50],[360,196]]),G.Dr(226,196,254,196),
-      G.T(142,70,"大地点",{s:1,c:"mut"}),G.T(220,214,"正门",{s:1,c:"mut",a:"e"}),door?G.T(366,146,"东门",{s:1,c:"mut"}):"",
-      rep.map(k=>{const [a,b]=k.split("-");return `<path class="l-rep" d="M${N[a][0]} ${N[a][1]}L${N[b][0]} ${N[b][1]}"/>`}),
-      G.Rt(pts),
-      rep.map(k=>{const [a,b]=k.split("-"),mx=(N[a][0]+N[b][0])/2,my=(N[a][1]+N[b][1])/2,v=N[a][0]===N[b][0];return G.T(mx+(v?-12:0),my+(v?4:-12),"走 "+P.cnt[k]+" 遍",{s:1,b:1,c:"bad",a:v?"e":"m"})}),
-      G.Po(N.S[0],N.S[1],"接"),G.T(N.S[0],N.S[1]+28,"接取",{s:1,a:"m"}),G.Sx(N.T[0],N.T[1],{r:10}),G.T(N.T[0]-16,N.T[1]+4,"目标",{s:1,a:"e"}),
-      G.Pin(N.X[0],N.X[1]),G.T(N.X[0]+14,N.X[1]-8,"下一个去处",{s:1}),
-      Object.keys(R.D).map(k=>{const q=R.D[k][1];return `<g class="l-hot l-cand${k===del?" on":""}" data-d="${k}" transform="translate(${q[0]} ${q[1]})"><circle r="10"/><text y="3.8">交</text><title>交付点：${R.D[k][0]}</title></g>`}),
-      G.Pl(pts[0][0],pts[0][1],null,{c:"l-me"})]);
-    const pct=Math.round(P.rep/P.t*100);
-    $(".rt-pct",el).innerHTML=pct+"<small>%</small>";$(".rt-x",el).textContent=(P.t/R.BEST).toFixed(1)+" 倍";$(".rt-n",el).textContent=rep.length;
-    $$("[data-door]",el).forEach(b=>b.setAttribute("aria-pressed",+b.dataset.door===door));
-    $$("button[data-d]",el).forEach(b=>b.setAttribute("aria-pressed",b.dataset.d===del));tblPre(el,pre);
-    $(".rt-say",el).innerHTML=(pre?`<b>${pre==="no"?"改前":"改后"}</b>：`:"")+(P.rep<1?"接取、目标、交付连成一条线：做完时人已经在另一个出口，出门正对下一个去处，没有一段路走两遍。"
-      :door&&del!=="B1"?"开了东门，交付点却在身后：玩家还是从正门原路退出，第二个门没有用上。"
-      :del==="S"?"做完内容原路退出，回到接取的人那里再出发：正门到目标的一段走了两遍，大路上的一段走了三遍。"
-      :"交付点挪到了前面，不用再回头找人；但只有一个门，从目标退回正门的这一段还是要走两遍。");
-    run.set(run.i);
-  }
-  const at=f=>{const d=tot*f;let i=1;while(i<lens.length-1&&lens[i]<d)i++;const g=(d-lens[i-1])/((lens[i]-lens[i-1])||1);return [pts[i-1][0]+(pts[i][0]-pts[i-1][0])*g,pts[i-1][1]+(pts[i][1]-pts[i-1][1])*g]};
-  const run=tblRun(el,100,6,i=>{const m=$(".l-me",svg);if(!m||!pts.length)return;const q=at(i/100);m.setAttribute("transform",`translate(${q[0].toFixed(1)} ${q[1].toFixed(1)})`)});
-  el.addEventListener("click",e=>{
-    const p=e.target.closest("[data-pre]");if(p){pre=p.dataset.pre;door=pre==="ok"?1:0;del=pre==="ok"?"B1":"S";run.play(false);run.set(0);draw();return}
-    const d=e.target.closest("[data-door]");if(d){door=+d.dataset.door;pre="";draw();return}
-    const c=e.target.closest("[data-d]");if(c){del=c.dataset.d;pre="";draw()}
-  });
-  draw();
-  return ()=>run.stop();
-}
-
-const TBL_DN={LEN:600,V:5,no:{d:40,w:10,p:30},ok:{d:120,w:45,p:70}};
-function tblDensHTML(){
-  return `<div class="tbl-2 tbl-dn">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="true">改前：只加点位</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="false">改后：补玩法和连接</button></div>
-      <svg class="tx map" viewBox="0 0 520 210" role="img" aria-label="一段 600 米的路和路上的内容点位；下面的横条按时间画出赶路和停下来体验各占多少"></svg>
-      <div class="tbl-bar b"><button type="button" class="tbl-btn l-play">▶ 走一遍</button><input type="range" class="tbl-range l-pos" min="0" max="100" value="0" aria-label="这段路走到哪了，按时间算"></div>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-rows">
-        <label class="tbl-row"><span>点位间距</span><input type="range" class="tbl-range" data-f="d" min="30" max="240" step="10"><output data-o="d"></output></label>
-        <label class="tbl-row"><span>每处能玩多久</span><input type="range" class="tbl-range" data-f="w" min="0" max="90" step="5"><output data-o="w"></output></label>
-        <label class="tbl-row"><span>愿意停下的</span><input type="range" class="tbl-range" data-f="p" min="10" max="100" step="10"><output data-o="p"></output></label>
-      </div>
-      <div class="tbl-num"><b class="dn-r"></b><span>体验时间 : 赶路时间</span></div>
-      <div class="tbl-kv"><div><b class="dn-a"></b><span>注意间隔：多久看到一处</span></div><div><b class="dn-s"></b><span>多久有一件停下来做的事</span></div></div>
-      <p class="tbl-say dn-say"></p>
-      <p class="tbl-note">按每秒 5 m 的移动速度估算，三个滑条都是示意。工作记录里南市第二轮的读数：兴趣点发现间隔约 28–56 秒，体验与赶路之比约 1∶1 到 2.5∶1（按当时的口径）。</p>
-    </aside></div>`;
-}
-function tblDensMount(el){
-  const G=TBX_G,C=TBL_DN,svg=$("svg.tx",el),pf="tbd"+(++tbxFigN)+"-";
-  let S={...C.no},pre="no",tl=[],T=1;
-  const X=m=>30+m/C.LEN*460;
-  function draw(){
-    const n=Math.floor(C.LEN/S.d),p=S.p/100,pt=[];
-    for(let i=0;i<n;i++)pt.push({m:(i+1)*S.d,on:S.w>0&&Math.floor((i+1)*p+1e-6)>Math.floor(i*p+1e-6)});
-    tl=[];let t=0,m=0;pt.forEach(q=>{const dt=(q.m-m)/C.V;tl.push([t,dt,m,q.m,0]);t+=dt;m=q.m;if(q.on){tl.push([t,S.w,m,m,1]);t+=S.w}});
-    if(m<C.LEN){tl.push([t,(C.LEN-m)/C.V,m,C.LEN,0]);t+=(C.LEN-m)/C.V}T=t;
-    const k=pt.filter(q=>q.on).length,trav=C.LEN/C.V,exp=k*S.w,r=exp/trav;
-    tblSvgSet(svg,pf,[G.Rd([[20,70],[500,70]],18),
-      pt.map((q,i)=>q.on?G.Po(X(q.m),70+(i%2?26:-26),"",{v:"mk",r:7}):G.Np(X(q.m),70+(i%2?24:-24))),
-      G.T(30,28,"一段 600 m 的路",{s:1,c:"mut"}),G.T(490,28,`${n} 处内容，停下 ${k} 处`,{s:1,c:"mut",a:"e"}),
-      `<rect class="tx-bg" x="30" y="150" width="460" height="18" rx="3"/>`,
-      tl.filter(s=>s[4]).map(s=>`<rect class="tx-bf" x="${(30+s[0]/T*460).toFixed(1)}" y="150" width="${Math.max(1,s[1]/T*460).toFixed(1)}" height="18"/>`),
-      G.T(30,142,"时间",{s:1,c:"mut"}),G.T(30,186,"出发",{s:1,c:"mut"}),G.T(490,186,`${Math.floor(T/60)} 分 ${Math.round(T%60)} 秒`,{s:1,c:"mut",a:"e"}),
-      G.T(260,186,"深色是停下来体验，浅色是赶路",{s:1,c:"mut",a:"m"}),
-      `<line class="l-cur" x1="30" y1="146" x2="30" y2="172"/>`,G.Pl(30,70,0,{c:"l-me"})]);
-    ["d","w","p"].forEach(f=>{$(`[data-f="${f}"]`,el).value=S[f]});
-    $('[data-o="d"]',el).textContent=S.d+" m";$('[data-o="w"]',el).textContent=S.w+" 秒";$('[data-o="p"]',el).textContent=S.p+"%";
-    $(".dn-r",el).innerHTML=(r>=10?r.toFixed(0):r.toFixed(1))+"<small> : 1</small>";
-    $(".dn-a",el).textContent=Math.round(S.d/C.V)+" 秒";$(".dn-s",el).textContent=k?Math.round(T/k)+" 秒":"没有";
-    tblPre(el,pre);
-    $(".dn-say",el).innerHTML=(pre?`<b>${pre==="no"?"改前":"改后"}</b>：`:"")+(!k||(r<0.4&&S.d/C.V<=15)?"一路都看得见东西，却没有值得停下的理由。再加点位，体验与赶路之比也不会变好：先补玩法。"
-      :r<0.6?"大部分时间在赶路。先分清是点位离得太远，还是到了也没什么可做。"
-      :r>2.5?"体验与赶路之比高过了南市第二轮记录的范围。单看这个数说不了好坏：要看停下的时间花在玩法上，还是花在找目标上。"
-      :"看到、停下、赶路比较均衡。读数只对口径相同的两版有意义，改完用同一口径再量一次。");
-    run.set(run.i);
-  }
-  const run=tblRun(el,100,7,i=>{const m=$(".l-me",svg),c=$(".l-cur",svg);if(!m||!tl.length)return;const t=T*i/100;let s=tl[tl.length-1];for(const q of tl){if(t<=q[0]+q[1]){s=q;break}}
-    const f=s[1]?Math.min(1,Math.max(0,(t-s[0])/s[1])):1,x=X(s[2]+(s[3]-s[2])*f),cx=30+t/T*460;
-    m.setAttribute("transform",`translate(${x.toFixed(1)} 70)`);c.setAttribute("x1",cx.toFixed(1));c.setAttribute("x2",cx.toFixed(1))});
-  el.addEventListener("click",e=>{const p=e.target.closest("[data-pre]");if(!p)return;pre=p.dataset.pre;S={...C[pre]};run.play(false);run.set(0);draw()});
-  el.addEventListener("input",e=>{const f=e.target.dataset&&e.target.dataset.f;if(!f)return;S[f]=+e.target.value;pre="";draw()});
-  draw();
-  return ()=>run.stop();
-}
-
-const TBL_LK={
-  tall:[[290,60,150,60,"主屋"],[176,58,46,46,"水塔"]],low:[[160,170,70,30],[250,185,90,28,"货堆"],[370,150,50,50]],
-  gate:[235,262],goal:[365,130],entry:[460,140],guards:[[200,140],[300,160],[150,104],[440,212]],props:[[312,150,"罐"],[396,136,"吊"]],
-  no:[366,24],ok:[100,156],SEE:64
-};
-function tblLookHTML(){
-  return `<div class="tbl-2 tbl-lk">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><span class="tbl-lbl">俯瞰点放在</span><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="false">改前：主屋背后的高处</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="true">改后：侧面的高处</button>
-        <span class="tbl-sep"></span><span class="tbl-lbl">画谁的视线</span><button type="button" class="tbl-btn" data-who="g" aria-pressed="false">大门口</button><button type="button" class="tbl-btn" data-who="v" aria-pressed="true">俯瞰点</button></div>
-      <svg class="tx map" viewBox="0 0 520 300" role="img" aria-label="俯视的一个据点：院子里有主屋、货堆、守卫和交互物；可以拖动俯瞰点，看它和大门口各看得到什么"></svg>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-sum"></div>
-      <table class="tbl-cmp"><thead><tr><th>一个画面四问</th><th>大门口</th><th>俯瞰点</th></tr></thead><tbody></tbody></table>
-      <p class="tbl-say lk-say"></p>
-      <p class="tbl-note">拖动图上的俯瞰点。大门口在地面，货堆和房子都挡视线；俯瞰点在高处，只有主屋和水塔挡得住。离守卫太近会一到就被发现。布局和距离是示意。</p>
-    </aside></div>`;
-}
-function tblLookMount(el){
-  const G=TBX_G,K=TBL_LK,svg=$("svg.tx",el),pf="tbk"+(++tbxFigN)+"-";
-  let V=K.ok.slice(),pre="ok",who="v",drag=false;
-  const blk=(a,b,list)=>list.some(r=>tblCut(a,b,[r[0]+1,r[1]+1,r[2]-2,r[3]-2]));
-  const seeG=p=>!blk(K.gate,p,K.tall.concat(K.low)),seeV=p=>!blk(V,p,K.tall);
-  function draw(){
-    const see=who==="g"?seeG:seeV,from=who==="g"?K.gate:V;
-    const near=K.guards.map(g=>Math.hypot(g[0]-V[0],g[1]-V[1])),spot=near.some(d=>d<K.SEE);
-    const cls=p=>see(p)?"":"l-dim",los=p=>see(p)?`<line class="l-los on" x1="${from[0]}" y1="${from[1]}" x2="${p[0]}" y2="${p[1]}"/>`:"";
-    tblSvgSet(svg,pf,[G.Rd([[20,286],[500,286]],16),G.Z(120,50,340,212,{rx:2}),
-      G.Wl([[120,262],[120,50],[460,50],[460,128]]),G.Wl([[460,152],[460,262],[250,262]]),G.Wl([[220,262],[120,262]]),G.Dr(220,262,250,262),G.Dr(460,128,460,152),
-      K.tall.map(b=>G.R(b[0],b[1],b[2],b[3],{v:"hi",t:b[4]})),K.low.map(b=>G.R(b[0],b[1],b[2],b[3],b[4]?{t:b[4]}:{})),
-      K.guards.map((g,i)=>near[i]<110?`<circle class="l-ring" cx="${g[0]}" cy="${g[1]}" r="${K.SEE}"/>`:""),
-      [K.goal,K.entry].concat(K.guards,K.props).map(los),
-      G.Sx(K.goal[0],K.goal[1],{r:9,c:cls(K.goal)}),G.T(K.goal[0]+13,K.goal[1]+4,"目标",{s:1,c:cls(K.goal)}),
-      G.T(K.entry[0]+8,K.entry[1]+4,"侧窗",{s:1,c:cls(K.entry)}),
-      K.guards.map(g=>G.En(g[0],g[1],null,{c:cls(g)})),K.props.map(p=>G.Po(p[0],p[1],p[2],{v:"mk",r:8,c:cls(p)})),
-      G.Pl(K.gate[0],K.gate[1]+8,-90),G.T(K.gate[0]+16,K.gate[1]+14,"大门口",{s:1}),
-      `<g class="l-vp" tabindex="0" role="button" aria-label="俯瞰点，可以拖动，也可以用方向键移动" transform="translate(${V[0].toFixed(1)} ${V[1].toFixed(1)})"><circle class="halo" r="18"/><circle r="7" fill="var(--mark)" stroke="#fff" stroke-width="2"/><text y="-13" text-anchor="middle">俯瞰点</text></g>`]);
-    const gN=K.guards.filter(seeG).length,vN=K.guards.filter(seeV).length,gP=K.props.filter(seeG).length,vP=K.props.filter(seeV).length;
-    const td=(ok,t)=>`<td class="${ok?"y":"n"}">${ok?"✓":"✕"} ${t}</td>`;
-    const rows=[["长期目标在哪",seeG(K.goal),"目标",seeV(K.goal),"目标"],["下一步去哪",seeG(K.entry),"侧窗",seeV(K.entry),"侧窗"],
-      ["要面对什么",gN>=3,`守卫 ${gN}/4`,vN>=3,`守卫 ${vN}/4`],["能利用什么",gP>=2,`交互物 ${gP}/2`,vP>=2,`交互物 ${vP}/2`]];
-    $("tbody",el).innerHTML=rows.map(r=>`<tr><td>${r[0]}</td>${td(r[1],r[2])}${td(r[3],r[4])}</tr>`).join("")+`<tr><td>到了会不会被发现</td><td>正门守着人</td>${td(!spot,spot?"离守卫太近":"安全")}</tr>`;
-    const ans=rows.filter(r=>r[3]).length,g0=rows.filter(r=>r[1]).length;
-    $(".tbl-sum",el).innerHTML=`<b>${ans} / 4</b>问在俯瞰点答得上（大门口 ${g0} / 4）`;
-    $$("[data-who]",el).forEach(b=>b.setAttribute("aria-pressed",b.dataset.who===who));tblPre(el,pre);
-    $(".lk-say",el).innerHTML=(pre?`<b>${pre==="no"?"改前":"改后"}</b>：`:"")+(spot?"这个位置离守卫太近，一到就会被发现：俯瞰点先要有遮挡，或者离远一点。"
-      :ans===4?"四问都指得出画面里的哪一处：看得到侧窗，就比大门口多一种进去的办法；看得到罐子和吊着的重物，可以先动手再下去。"
-      :ans>=2?"看得到一部分。还缺的那几样被主屋或水塔挡着，换个方向再看。"
-      :"有高处，但关键的东西都在主屋背面：看完也没有新的打法，等于没有俯瞰点。");
-  }
-  const setV=(p,keep)=>{let x=Math.max(14,Math.min(506,p[0])),y=Math.max(16,Math.min(278,p[1]));
-    for(const b of K.tall.concat(K.low)){if(x>b[0]-4&&x<b[0]+b[2]+4&&y>b[1]-4&&y<b[1]+b[3]+4){const ds=[[x-(b[0]-5),-1,0],[b[0]+b[2]+5-x,1,0],[y-(b[1]-5),0,-1],[b[1]+b[3]+5-y,0,1]].sort((m,n)=>m[0]-n[0])[0];x+=ds[1]*ds[0];y+=ds[2]*ds[0]}}
-    V=[x,y];if(!keep){pre="";who="v"}draw()};
-  el.addEventListener("click",e=>{const p=e.target.closest("[data-pre]");if(p){pre=p.dataset.pre;who="v";setV(K[pre],true);return}
-    const w=e.target.closest("[data-who]");if(w){who=w.dataset.who;draw()}});
-  svg.addEventListener("pointerdown",e=>{drag=true;try{svg.setPointerCapture(e.pointerId)}catch(x){}setV(tblPt(svg,e));e.preventDefault()});
-  svg.addEventListener("pointermove",e=>{if(drag)setV(tblPt(svg,e))});
-  const up=()=>{drag=false};svg.addEventListener("pointerup",up);svg.addEventListener("pointercancel",up);
-  svg.addEventListener("keydown",e=>{const k={ArrowLeft:[-8,0],ArrowRight:[8,0],ArrowUp:[0,-8],ArrowDown:[0,8]}[e.key];if(!k||!e.target.closest(".l-vp"))return;e.preventDefault();setV([V[0]+k[0],V[1]+k[1]]);const v=$(".l-vp",svg);if(v)v.focus()});
-  draw();
-  return null;
-}
-
-const TBL_AR={tiers:[["最小",64],["小型",196],["中型",400],["大型",900]],no:{l:30,w:9,n:8,o:2},ok:{l:20,w:20,n:6,o:1}};
-function tblArenaHTML(){
-  return `<div class="tbl-2 tbl-ar">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="true">改前：凭感觉搭</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="false">改后：对照分级</button>
-        <span class="tbl-sep"></span><span class="tbl-lbl">大物件</span>${["没有","靠边放","放在中间"].map((t,i)=>`<button type="button" class="tbl-btn" data-o="${i}" aria-pressed="false">${t}</button>`).join("")}</div>
-      <svg class="tx map" viewBox="0 0 520 300" role="img" aria-label="左边是按比例画的战斗场地、敌人和大物件；右边把它的有效面积和四级的最小面积叠在一起比较"></svg>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-rows">
-        <label class="tbl-row"><span>场地的长</span><input type="range" class="tbl-range" data-f="l" min="6" max="36" step="1"><output data-v="l"></output></label>
-        <label class="tbl-row"><span>场地的宽</span><input type="range" class="tbl-range" data-f="w" min="6" max="36" step="1"><output data-v="w"></output></label>
-        <label class="tbl-row"><span>同时在场的敌人</span><input type="range" class="tbl-range" data-f="n" min="1" max="16" step="1"><output data-v="n"></output></label>
-      </div>
-      <div class="tbl-num"><b class="ar-a"></b><span class="ar-t"></span></div>
-      <ul class="tbl-diag"></ul>
-      <p class="tbl-note">四级的最小有效面积 64、196、400、900 ㎡ 出自第一版关卡 Metrics；规范里每一级另有敌人数量的建议和上限，这里不列。长宽比的判断只是示意。</p>
-    </aside></div>`;
-}
-function tblArenaMount(el){
-  const G=TBX_G,A=TBL_AR,svg=$("svg.tx",el),pf="tba"+(++tbxFigN)+"-",SC=6.4;
-  let S={...A.no},pre="no";
-  function draw(){
-    const area=S.l*S.w,eff=S.o===2?(S.l-4)/2*S.w:S.o===1?area-12:area,ti=A.tiers.filter(t=>eff>=t[1]).length-1,ratio=Math.max(S.l,S.w)/Math.min(S.l,S.w);
-    const W=S.l*SC,H=S.w*SC,x0=150-W/2,y0=150-H/2,side=Math.sqrt(eff);
-    let sd=11;const rnd=()=>(sd=(sd*16807)%2147483647)/2147483647;
-    const en=[];let guard=0;while(en.length<S.n&&guard++<400){const x=x0+8+rnd()*(W-16),y=y0+8+rnd()*(H*0.62-8);
-      if(S.o===2&&Math.abs(x-150)<4*SC/2+7)continue;if(S.o===1&&x>x0+W-3*SC-7&&y<y0+4*SC+7)continue;en.push([x,y])}
-    const bx=292,by=274,ts=6;
-    tblSvgSet(svg,pf,[G.R(x0,y0,W,H,{v:"gnd",rx:4}),
-      S.o===2?[`<rect class="l-cut" x="${150+2*SC}" y="${y0}" width="${W/2-2*SC}" height="${H}"/>`,G.R(150-2*SC,y0,4*SC,H,{v:"hi"}),G.T(150+2*SC+(W/2-2*SC)/2,y0+H/2+4,"被隔开",{s:1,c:"bad",a:"m"})]:S.o===1?G.R(x0+W-3*SC,y0,3*SC,4*SC,{v:"hi"}):"",
-      en.map(p=>G.En(p[0],p[1])),G.Pl(S.o===2?x0+(W/2-2*SC)/2:150,y0+H-12,-90),
-      G.T(150,y0-8,`${S.l} m`,{s:1,c:"mut",a:"m"}),G.T(x0-6,150+4,`${S.w} m`,{s:1,c:"mut",a:"e"}),
-      A.tiers.map((t,i)=>{const s=Math.sqrt(t[1])*ts;return [`<rect class="l-ref" x="${bx}" y="${(by-s).toFixed(1)}" width="${s.toFixed(1)}" height="${s.toFixed(1)}"/>`,G.T(bx+s-3,by-s+13,`${t[0]} ${t[1]} ㎡`,{s:1,c:"mut",a:"e"})]}),
-      `<rect class="l-eff" x="${bx}" y="${(by-side*ts).toFixed(1)}" width="${(side*ts).toFixed(1)}" height="${(side*ts).toFixed(1)}"/>`,
-      G.T(bx,290,"有效面积折成正方形，和四级比大小",{s:1,c:"mut"})]);
-    ["l","w","n"].forEach(f=>{$(`[data-f="${f}"]`,el).value=S[f]});
-    $('[data-v="l"]',el).textContent=S.l+" m";$('[data-v="w"]',el).textContent=S.w+" m";$('[data-v="n"]',el).textContent=S.n+" 人";
-    $$("[data-o]",el).forEach(b=>b.setAttribute("aria-pressed",+b.dataset.o===S.o));tblPre(el,pre);
-    $(".ar-a",el).innerHTML=Math.round(eff)+"<small> ㎡</small>";
-    $(".ar-t",el).textContent="有效战斗面积 · "+(ti<0?"不到最小一级":A.tiers[ti][0]+"一级")+`，同时在场 ${S.n} 人，人均 ${(eff/S.n).toFixed(0)} ㎡`;
-    tblDiag(el,[
-      ti<0?[0,`有效面积不到最小一级的 ${A.tiers[0][1]} ㎡。`]:[1,`达到${A.tiers[ti][0]}一级（不少于 ${A.tiers[ti][1]} ㎡）`+(ti<3?`，离${A.tiers[ti+1][0]}还差 ${Math.ceil(A.tiers[ti+1][1]-eff)} ㎡。`:"。")],
-      S.o===2?[0,`中间的大物件把场地切成两块：占地 ${area} ㎡，能连着周旋的只有 ${Math.round(eff)} ㎡。`]:[1,S.o===1?"大物件靠边放，中间的空间是完整的。":"场地里没有切碎空间的大物件。"],
-      ratio>3?[0,`长宽比约 ${ratio.toFixed(1)} : 1，更像一条通道：面积够，绕行的余地不够。`]:[1,`长宽比约 ${ratio.toFixed(1)} : 1，几个方向都有周旋的余地。`]]);
-  }
-  el.addEventListener("click",e=>{const p=e.target.closest("[data-pre]");if(p){pre=p.dataset.pre;S={...A[pre]};draw();return}
-    const o=e.target.closest("[data-o]");if(o){S.o=+o.dataset.o;pre="";draw()}});
-  el.addEventListener("input",e=>{const f=e.target.dataset&&e.target.dataset.f;if(!f)return;S[f]=+e.target.value;pre="";draw()});
-  draw();
-  return null;
-}
-
-const TBL_CV={seg:[["开场",2],["打探",3],["集市",2],["赶路",3],["仓库",3],["后巷",2],["码头",3],["收尾",1.4]],no:[1,1,1,2,5,4,4,2],ok:[1,2,3,2,4,2,5,1]};
-function tblCurveHTML(){
-  return `<div class="tbl-2 tbl-cv">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="true">改前：照剧情顺序排</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="false">改后：先排强弱</button></div>
-      <svg class="tx" viewBox="0 0 520 260" role="img" aria-label="一条任务的节奏曲线：横向是八段流程，纵向是强度；每一段的圆点可以上下拖动"></svg>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-sum"></div>
-      <ul class="tbl-diag"></ul>
-      <p class="tbl-say cv-say"></p>
-      <p class="tbl-note">上下拖动圆点（或者选中后按方向键）改每一段的强度，红色底标出连续平缓或连续高压的段落。八段的名字和长短是示意。</p>
-    </aside></div>`;
-}
-function tblCurveMount(el){
-  const G=TBX_G,C=TBL_CV,svg=$("svg.tx",el),pf="tbc"+(++tbxFigN)+"-",n=C.seg.length;
-  let L=C.no.slice(),pre="no",drag=-1;
-  const tw=C.seg.reduce((s,x)=>s+x[1],0),X0=44,X1=506,Y0=206,Y1=40;
-  const xs=[];{let a=X0;C.seg.forEach(s=>{const w=s[1]/tw*(X1-X0);xs.push([a,w]);a+=w})}
-  const yy=v=>Y0-(v-1)/4*(Y0-Y1);
-  const runs=f=>{const out=[];let a=-1;for(let i=0;i<=n;i++){if(i<n&&f(L[i])){if(a<0)a=i}else{if(a>=0&&i-a>=3)out.push([a,i-1]);a=-1}}return out};
-  function draw(){
-    const flat=runs(v=>v<=2),high=runs(v=>v>=4),mx=Math.max(...L),mi=L.lastIndexOf(mx),h1=L.slice(0,n/2).reduce((a,b)=>a+b,0),h2=L.slice(n/2).reduce((a,b)=>a+b,0);
-    const pts=L.map((v,i)=>[xs[i][0]+xs[i][1]/2,yy(v)]);
-    const band=(r,t)=>{const x=xs[r[0]][0],w=xs[r[1]][0]+xs[r[1]][1]-x;return `<rect class="l-warn" x="${x}" y="${Y1-14}" width="${w}" height="${Y0-Y1+28}" rx="4"/>`+G.T(x+w/2,Y1-18,t,{s:1,b:1,c:"bad",a:"m"})};
-    svg.innerHTML=(G.DEFS+[xs.map((x,i)=>i%2?"":`<rect class="l-col" x="${x[0]}" y="${Y1-14}" width="${x[1]}" height="${Y0-Y1+28}"/>`),
-      flat.map(r=>band(r,"连续平缓")),high.map(r=>band(r,"连续高压")),
-      `<line class="l-ax" x1="${X0}" y1="${Y0+14}" x2="${X1}" y2="${Y0+14}"/>`,G.T(X0-8,Y1+4,"强",{s:1,c:"mut",a:"e"}),G.T(X0-8,Y0+4,"弱",{s:1,c:"mut",a:"e"}),
-      `<path class="l-area" d="M${pts[0][0]} ${Y0+14}L${pts.map(p=>p.join(" ")).join("L")}L${pts[n-1][0]} ${Y0+14}z"/>`,
-      `<path class="l-curve" d="M${pts.map(p=>p.join(" ")).join("L")}"/>`,
-      xs.map((x,i)=>G.T(x[0]+x[1]/2,Y0+32,C.seg[i][0],{s:1,a:"m",b:i===mi,c:i===mi?"mk":""})),
-      pts.map((p,i)=>`<rect class="l-hz" data-i="${i}" x="${xs[i][0]}" y="${Y1-14}" width="${xs[i][1]}" height="${Y0-Y1+28}"/><circle class="l-h" data-i="${i}" cx="${p[0]}" cy="${p[1]}" r="8" tabindex="0" role="slider" aria-label="${C.seg[i][0]}的强度" aria-valuemin="1" aria-valuemax="5" aria-valuenow="${L[i]}"/>`)
-    ].flat(Infinity).join("")).replace(/§(\w)/g,pf+"$1");
-    const peakOk=mi===n-2&&L[n-1]<=2;
-    tblDiag(el,[
-      flat.length?[0,`${flat.map(r=>`“${C.seg[r[0]][0]}”到“${C.seg[r[1]][0]}”`).join("、")}连续平缓：中间插一个小冲突。`]:[1,"没有连续三段以上的平缓。"],
-      high.length?[0,`${high.map(r=>`“${C.seg[r[0]][0]}”到“${C.seg[r[1]][0]}”`).join("、")}连续高压：中间插一段休止。`]:[1,"没有连续三段以上的高压。"],
-      peakOk?[1,"最强的一段在最后，后面只有简短的收尾。"]:mi!==n-2?[0,`最强的一段是“${C.seg[mi][0]}”，后面还有 ${n-1-mi} 段：高潮没有留到最后。`]:[0,"高潮之后的收尾强度还很高：收尾要简短，把强度放下来。"],
-      h2>h1?[1,"后半程比前半程强，越往后越紧。"]:[0,"后半程不比前半程强：越往后应该越紧，并加入新的要素。"]]);
-    tblPre(el,pre);
-    $(".cv-say",el).innerHTML=pre==="no"?"<b>改前</b>：内容各自成立，连起来没有起伏：前面一直在走路和说话，后面连打三场，最强的一场在中间。":pre==="ok"?"<b>改后</b>：先画好这条线，再把空间和事件填进去。曲线是计划，实际时长要用跑测再量。":"";
-  }
-  const setL=(i,v)=>{v=Math.max(1,Math.min(5,Math.round(v)));if(L[i]===v)return;L[i]=v;pre="";draw()};
-  const lv=e=>{const y=tblPt(svg,e)[1];return 1+(Y0-y)/(Y0-Y1)*4};
-  svg.addEventListener("pointerdown",e=>{const h=e.target.closest("[data-i]");if(!h)return;drag=+h.dataset.i;try{svg.setPointerCapture(e.pointerId)}catch(x){}setL(drag,lv(e));e.preventDefault()});
-  svg.addEventListener("pointermove",e=>{if(drag>=0)setL(drag,lv(e))});
-  const up=()=>{drag=-1};svg.addEventListener("pointerup",up);svg.addEventListener("pointercancel",up);
-  svg.addEventListener("keydown",e=>{const h=e.target.closest(".l-h");if(!h)return;const d={ArrowUp:1,ArrowDown:-1}[e.key];if(!d)return;e.preventDefault();const i=+h.dataset.i;setL(i,L[i]+d);const b=$(`.l-h[data-i="${i}"]`,svg);if(b)b.focus()});
-  el.addEventListener("click",e=>{const p=e.target.closest("[data-pre]");if(!p)return;pre=p.dataset.pre;L=C[pre].slice();draw()});
-  draw();
-  return null;
-}
-
-function tblPrepHTML(){
-  return `<div class="tbl-2 tbl-pp">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><span class="tbl-lbl">兑现的时机</span><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="false">改前：分散在整场战斗里</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="true">改后：集中在开战后</button></div>
-      <svg class="tx" viewBox="0 0 520 250" role="img" aria-label="开战之后的时间轴：两处准备各在什么时候兑现，下面一排是还在场的守卫"></svg>
-      <div class="tbl-bar b"><button type="button" class="tbl-btn l-play">▶ 开战</button><input type="range" class="tbl-range l-pos" min="0" max="100" value="0" aria-label="开战之后的时间"></div>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-cks"><span class="tbl-lbl">探查时到过哪里（两处到任意一处，硬性目标就算完成）</span>
-        <label class="tbl-ck"><input type="checkbox" data-c="w" checked>右侧楼梯上方：确认位置，发现武器和可以利用的窗户</label>
-        <label class="tbl-ck"><input type="checkbox" data-c="b" checked>小仓库：确认位置，发现炸弹</label></div>
-      <div class="tbl-num"><b class="pp-n"></b><span class="pp-t"></span></div>
-      <ul class="tbl-diag"></ul>
-      <p class="tbl-say pp-say"></p>
-      <p class="tbl-note">流程取自情报员任务的仓库：每处发现在汇合时变成同伴的一项分工。守卫的人数和时间刻度是示意。</p>
-    </aside></div>`;
-}
-function tblPrepMount(el){
-  const G=TBX_G,svg=$("svg.tx",el),pf="tbq"+(++tbxFigN)+"-";
-  let S={w:true,b:true},pre="ok",cur=0;
-  const X=t=>70+t/100*430,N=10;
-  const evs=()=>{const sp=pre==="no";return {w:[[sp?20:6,2,"暗杀两名守卫"],[sp?45:26,2,"机枪扫射"]],b:[[sp?84:36,3,"小仓库爆炸"]]}};
-  function draw(){
-    const E=evs(),on=[].concat(S.w?E.w:[],S.b?E.b:[]),gone=on.filter(e=>cur>=e[0]).reduce((s,e)=>s+e[1],0);
-    const row=(y,name,list,act)=>[G.T(62,y+4,name,{s:1,a:"e",c:act?"":"mut"}),`<line class="l-ax" x1="70" y1="${y}" x2="500" y2="${y}"/>`,
-      list.map(e=>{const x=X(e[0]),w=e[2].length*11.5+14,lit=act&&cur>=e[0];return `<rect class="l-ev${act?lit?" on":"":" off"}" x="${x}" y="${y-12}" width="${w}" height="24" rx="5"/>`+G.T(x+w/2,y+4,e[2],{s:1,a:"m",nh:1,c:act?lit?"mk":"":"mut"})})];
-    svg.innerHTML=(G.DEFS+[
-      G.T(70,26,"开战",{s:1,b:1}),G.T(500,26,"战斗后段",{s:1,c:"mut",a:"e"}),pre==="ok"?`<rect class="l-area" x="70" y="36" width="234" height="134" rx="4"/>`+G.T(76,50,"开战后很短的时间里",{s:1,c:"mk"}):"",
-      row(74,"同伴甲",E.w,S.w),row(112,"同伴乙",E.b,S.b),row(150,"玩家",[[0,0,"谈判，把注意力引到自己身上"]],true),
-      G.T(62,212,"守卫",{s:1,a:"e"}),Array.from({length:N},(_,i)=>{const x=86+i*30,dead=i>=N-gone;return G.En(x,208,null,{c:dead?"l-dim":""})+(dead?G.X(x,208):"")}),
-      G.T(86+N*30,212,`还在场 ${N-gone} 人`,{s:1,b:1,c:gone?"mk":""}),
-      `<line class="l-cur" x1="${X(cur)}" y1="36" x2="${X(cur)}" y2="228"/>`
-    ].flat(Infinity).join("")).replace(/§(\w)/g,pf+"$1");
-    const E0=evs(),all=[].concat(S.w?E0.w:[],S.b?E0.b:[]),early=all.filter(e=>e[0]<=40).reduce((s,e)=>s+e[1],0),k=(S.w?1:0)+(S.b?1:0);
-    $(".pp-n",el).innerHTML=(N-early)+"<small> 人</small>";$(".pp-t",el).textContent="开战后片刻，还要面对的守卫";
-    tblDiag(el,[
-      k?[1,"硬性目标完成：确认了主仓库的位置，可以回去汇合。"]:[0,"两处确认点都没到：硬性目标没完成，还不能汇合。"],
-      S.w?[1,"武器和窗户 → 同伴甲从窗户潜入，伏在二层平台：暗杀两名守卫，再用机枪向下扫射。"]:[2,"没去右侧楼梯上方：少一路从上方来的支援。"],
-      S.b?[1,"炸弹 → 同伴乙从阳台潜入小仓库埋伏：爆炸炸掉一大块墙，炸飞几名守卫。"]:[2,"没去小仓库：少一路爆炸支援。"],
-      !k?[2,"没有可以兑现的准备。"]:pre==="ok"?[1,"兑现都在开战后很短的时间里，一处接一处。"]:[0,"兑现分散在整场战斗里：效果一样，玩家却认不出是自己的安排。"]]);
-    $$("[data-c]",el).forEach(c=>{c.checked=S[c.dataset.c]});tblPre(el,pre);
-    $(".pp-say",el).innerHTML=!k?"到任意一处确认点就能推进；另一处去不去、弱点找几处，由玩家自己定。"
-      :k===1?"只完成硬性目标也能推进：少一路支援，这一仗更难打，但保底的流程成立。"
-      :pre==="ok"?"两处准备接连兑现，敌人在很短的时间里被极大削弱；玩家认得出眼前的局面是自己安排的。"
-      :"两处准备都用上了，可是一处在开头、一处在后段，中间隔着一长段普通的战斗。";
-  }
-  const run=tblRun(el,100,6,i=>{cur=i;draw()});
-  el.addEventListener("click",e=>{const p=e.target.closest("[data-pre]");if(!p)return;pre=p.dataset.pre;draw()});
-  el.addEventListener("change",e=>{const c=e.target.dataset&&e.target.dataset.c;if(!c)return;S[c]=e.target.checked;draw()});
-  draw();
-  return ()=>run.stop();
-}
-
-const TBL_MT={
-  st:["跟随","等待","提示","先动"],
-  chk:["同伴停下的位置，玩家看得见","同伴说的东西，转一下镜头就能看到","玩家跳过阻碍时，同伴不会卡在等待点","同伴的动作能说明还缺什么"],
-  ok:{start:{p:[70,170],c:[44,186],s:0,t:"玩家带路，同伴跟在侧后方，任务标记放在同伴身上。"},
-    meet:{p:[200,170],c:[264,192],s:1,say:"那边有出口，最好智取。",t:"前方有人挡在出口前。同伴脱离跟随，跑到玩家前面的货箱后蹲下：停下本身就是提示。",ok:[0]},
-    stuck:{p:[214,150],c:[264,192],s:2,say:"上面吊着重物，绳子在二楼。",los:1,t:"先让玩家自己试了一会儿，再给提示：同伴看向悬挂的重物，说出看到了什么。",ok:[0,1,3]},
-    solve:{p:[330,170],c:[470,170],s:3,dead:1,say:"走！",t:"重物落下，条件满足：同伴先冲出去，再回到跟随。",ok:[0]},
-    skip:{p:[474,150],c:[446,176],s:0,t:"玩家什么都不处理，直接冲向出口：同伴从等待点出来跟上，不留在原地。",ok:[2]}},
-  no:{start:{p:[70,170],c:[44,186],s:0,t:"同伴一直跟在玩家身后，镜头里看不到。"},
-    meet:{p:[200,170],c:[172,188],s:0,t:"前方有人挡在出口前。同伴还是站在身后的镜头外，玩家只能自己判断该怎么办。",bad:[0]},
-    stuck:{p:[214,150],c:[186,170],s:0,t:"玩家在门前反复尝试，同伴没有反应；这时只能弹任务文字，节奏被打断。",bad:[0,1,3]},
-    solve:{p:[330,170],c:[302,188],s:0,dead:1,t:"玩家自己找到了办法。同伴跟着走，没有参与，也没有反馈。",bad:[3]},
-    skip:{p:[474,150],c:[446,176],s:0,t:"玩家直接冲向出口，同伴照旧跟上。",ok:[2]}}
-};
-function tblMateHTML(){
-  return `<div class="tbl-2 tbl-mt">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><span class="tbl-lbl">同伴</span><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="false">改前：只会跟随</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="true">改后：跟随和等待切换</button></div>
-      <svg class="tx map" viewBox="0 0 520 240" role="img" aria-label="俯视的一段路：出口前有人挡着，路边有货箱，上方吊着重物；玩家和同伴的位置随每一步变化"></svg>
-      <div class="tbl-bar b tbl-acts"><span class="tbl-lbl">玩家</span><button type="button" class="tbl-btn" data-a="meet">往前走，遇到阻碍</button><button type="button" class="tbl-btn" data-a="stuck">试了一会儿，没进展</button><button type="button" class="tbl-btn" data-a="solve">上二楼切断绳子</button><button type="button" class="tbl-btn" data-a="skip">不处理，直接冲向出口</button><button type="button" class="tbl-btn" data-a="start">重来</button></div>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-states"></div>
-      <p class="tbl-say mt-say"></p>
-      <ul class="tbl-diag"></ul>
-      <p class="tbl-note">按顺序点玩家的行为，看同伴切到哪个状态；四条检查在演示到的时候打勾。场景取自古庙逃离路线里出路被堵的一处，位置是示意。</p>
-    </aside></div>`;
-}
-function tblMateMount(el){
-  const G=TBX_G,M=TBL_MT,svg=$("svg.tx",el),pf="tbm"+(++tbxFigN)+"-";
-  let pre="ok",step="start",seen=[2,2,2,2];
-  const W=[410,58],EN=[[404,150],[420,192]];
-  tblSvgSet(svg,pf,[G.Rd([[20,170],[500,170]],56),G.R(60,30,150,70),G.R(250,30,110,70,{t:"二楼"}),G.R(60,214,380,22),
-    G.R(280,182,26,22,{v:"hi"}),G.Dr(486,142,486,198),G.T(486,134,"出口",{s:1,a:"m"}),
-    `<g class="l-mv mt-w">${G.Po(W[0],W[1],"吊",{v:"mk",r:9})}</g>`,`<line class="l-los mt-rope" x1="${W[0]}" y1="${W[1]+9}" x2="${W[0]}" y2="140"/>`,
-    `<line class="l-los on mt-los" x1="0" y1="0" x2="0" y2="0" style="opacity:0"/>`,
-    EN.map((e,i)=>`<g class="l-mv mt-e${i}">${G.En(e[0],e[1],180)}</g>`),
-    `<g class="l-mv mt-c" style="transform:translate(44px,186px)">${G.Fr(0,0,0)}<text class="l-tag" y="-11" text-anchor="middle">同伴</text></g>`,
-    `<g class="l-mv mt-p" style="transform:translate(70px,170px)">${G.Pl(0,0,0)}<text class="l-tag" y="-12" text-anchor="middle">玩家</text></g>`,
-    `<g class="l-bub mt-b" style="opacity:0"><rect x="0" y="0" width="10" height="24" rx="6"/><text x="8" y="16"></text></g>`]);
-  function draw(){
-    const s=M[pre][step],c=s.c,p=s.p;
-    $(".mt-p",svg).style.transform=`translate(${p[0]}px,${p[1]}px)`;$(".mt-c",svg).style.transform=`translate(${c[0]}px,${c[1]}px)`;
-    EN.forEach((e,i)=>{$(".mt-e"+i,svg).style.opacity=s.dead?0.15:1});
-    const lo=$(".mt-los",svg);lo.style.opacity=s.los?1:0;if(s.los){lo.setAttribute("x1",c[0]);lo.setAttribute("y1",c[1]);lo.setAttribute("x2",W[0]);lo.setAttribute("y2",W[1])}
-    $(".mt-rope",svg).style.opacity=s.dead?0:1;$(".mt-w",svg).style.opacity=s.dead?.25:1;
-    const b=$(".mt-b",svg);b.style.opacity=s.say?1:0;if(s.say){const w=s.say.length*11.6+16,x=Math.min(512-w,Math.max(8,c[0]-w/2));b.setAttribute("transform",`translate(${x} ${c[1]+14})`);$("rect",b).setAttribute("width",w);$("text",b).textContent=s.say}
-    (s.ok||[]).forEach(i=>{seen[i]=1});(s.bad||[]).forEach(i=>{if(seen[i]!==1)seen[i]=0});
-    $(".tbl-states",el).innerHTML=M.st.map((t,i)=>`<span class="tbl-tag${i===s.s?" on":""}">${t}</span>`).join('<span class="ar">→</span>');
-    $(".mt-say",el).innerHTML=`<b>${M.st[s.s]}</b>：${s.t}`;
-    tblDiag(el,M.chk.map((t,i)=>[seen[i],t+(seen[i]===0?"：没有做到。":seen[i]===1?"。":"？")]));
-    const order={start:["meet"],meet:["stuck","solve","skip"],stuck:["solve","skip"],solve:[],skip:[]}[step];
-    $$("[data-a]",el).forEach(x=>{x.disabled=x.dataset.a!=="start"&&!order.includes(x.dataset.a)});tblPre(el,pre);
-  }
-  el.addEventListener("click",e=>{const p=e.target.closest("[data-pre]");if(p){pre=p.dataset.pre;step="start";seen=[2,2,2,2];draw();return}
-    const a=e.target.closest("[data-a]");if(a&&!a.disabled){if(a.dataset.a==="start")seen=[2,2,2,2];step=a.dataset.a;draw()}});
-  draw();
-  return null;
-}
-
-const TBL_CR={Z:[0,.9,-.7,.5,-.3,1,-1,.2,-.5,.7,-.9,.35],HOT:[3,7,9,11],no:{m:70,s:0},ok:{m:50,s:30},
-  ev:{calm:["日常",75],hit:["打了村民甲一下",50],fight:["又连打两下",0],fire:["放火",0],rest:["停手一阵",50]},
-  name:{att:"围攻",warn:"上前警告",watch:"看着",flee:"退开或跑开",fire:"去救火"}};
-function tblCrowdHTML(){
-  const E=TBL_CR.ev;
-  return `<div class="tbl-2 tbl-cr">
-    <div class="tbl-stage">
-      <div class="tbl-bar"><span class="tbl-lbl">性格</span><button type="button" class="tbl-btn no" data-pre="no" aria-pressed="false">改前：所有人一个数值</button><button type="button" class="tbl-btn ok" data-pre="ok" aria-pressed="true">改后：各人不一样</button></div>
-      <svg class="tx map" viewBox="0 0 520 300" role="img" aria-label="俯视的村口：玩家在中间，十二个村民按各自的勇敢值做出不同的反应"></svg>
-      <div class="tbl-bar b tbl-acts"><span class="tbl-lbl">玩家</span>${["hit","fight","fire","rest"].map(k=>`<button type="button" class="tbl-btn" data-e="${k}" aria-pressed="false">${E[k][0]}</button>`).join("")}</div>
-    </div>
-    <aside class="tbl-side">
-      <div class="tbl-rows">
-        <label class="tbl-row"><span>平均勇敢值</span><input type="range" class="tbl-range" data-f="m" min="20" max="80" step="2"><output data-v="m"></output></label>
-        <label class="tbl-row"><span>各人相差多少</span><input type="range" class="tbl-range" data-f="s" min="0" max="40" step="2"><output data-v="s"></output></label>
-      </div>
-      <div class="tbl-rows"><div class="tbl-row"><span>好感度</span><div class="tbl-meter"><b></b><u style="left:25%"></u></div><output class="cr-f"></output></div></div>
-      <div class="tbl-stack"></div><div class="tbl-lg"></div>
-      <p class="tbl-say cr-say"></p>
-      <p class="tbl-note">同一个事件按范围广播，每个人按自己的勇敢值响应。好感度 75、0、50 是村落 Demo 里的数；勇敢值的分界和红线的位置是示意。</p>
-    </aside></div>`;
-}
-function tblCrowdMount(el){
-  const G=TBX_G,C=TBL_CR,svg=$("svg.tx",el),pf="tbw"+(++tbxFigN)+"-",N=C.Z.length,P=[250,160],FIRE=[430,70],VAT=[452,236];
-  let S={...C.ok},pre="ok",ev="calm";
-  const base=i=>{const a=i/N*Math.PI*2+.3;return [P[0]+Math.cos(a)*(118+(i%3)*10),P[1]+Math.sin(a)*(84+(i%2)*10)]};
-  tblSvgSet(svg,pf,[G.Rd([[20,160],[500,160]],26),G.Rd([[250,20],[250,280]],22),G.R(40,36,120,64),G.R(330,196,84,60),G.R(60,214,110,54),G.R(350,36,60,44),
-    G.Po(VAT[0],VAT[1],"水",{r:10}),`<g class="cr-fire" style="opacity:0">${G.Po(FIRE[0],FIRE[1],"火",{v:"mk",r:11})}</g>`,
-    `<circle class="l-ref cr-rng" cx="${P[0]}" cy="${P[1]}" r="150" style="opacity:0"/>`,
-    Array.from({length:N},(_,i)=>`<g class="l-mv l-n cr-n${i}" style="transform:translate(${base(i).map(v=>v.toFixed(1)+"px").join(",")})"><circle r="6.5"/>${i===0?'<text y="-10">甲</text>':""}</g>`),G.Pl(P[0],P[1],0)]);
-  function react(i){
-    const b=Math.max(0,Math.min(100,S.m+C.Z[i]*S.s)),brave=b>=60,timid=b<40;
-    if(ev==="calm"||ev==="rest")return "calm";
-    if(ev==="hit")return i===0?"warn":brave?"warn":timid?"flee":"watch";
-    if(ev==="fire"&&C.HOT.includes(i)&&!timid)return "fire";
-    return i===0?(timid?"flee":"att"):brave?"att":timid?"flee":"watch";
-  }
-  function draw(){
-    const cnt={att:0,warn:0,watch:0,flee:0,fire:0};
-    for(let i=0;i<N;i++){const r=react(i),q=base(i),g=$(".cr-n"+i,svg);let x=q[0],y=q[1];
-      const k=r==="att"?.3:r==="warn"?(i===0?.62:.5):r==="flee"?(ev==="hit"?1.25:1.7):1;
-      if(r==="fire"){x=VAT[0]-30+(i%4)*14;y=VAT[1]-26+(i%3)*10}else{x=P[0]+(q[0]-P[0])*k;y=P[1]+(q[1]-P[1])*k}
-      x=Math.max(10,Math.min(510,x));y=Math.max(10,Math.min(290,y));
-      g.style.transform=`translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`;g.setAttribute("class",`l-mv l-n cr-n${i}`+(r==="calm"||r==="watch"?"":" "+r));
-      if(r!=="calm")cnt[r]++}
-    $(".cr-fire",svg).style.opacity=ev==="fire"?1:0;$(".cr-rng",svg).style.opacity=ev==="hit"||ev==="fight"?1:0;
-    const f=C.ev[ev][1];$(".tbl-meter b",el).style.width=f+"%";$(".cr-f",el).textContent=f;
-    const keys=Object.keys(cnt).filter(k=>cnt[k]),kinds=keys.length;
-    $(".tbl-stack",el).innerHTML=keys.map(k=>`<i class="${k}" style="width:${cnt[k]/N*100}%"></i>`).join("");
-    $(".tbl-lg",el).innerHTML=keys.map(k=>`<span><i class="${k}"></i>${C.name[k]} ${cnt[k]}</span>`).join("")||"<span>各做各的事</span>";
-    ["m","s"].forEach(k=>{$(`[data-f="${k}"]`,el).value=S[k]});$('[data-v="m"]',el).textContent=S.m;$('[data-v="s"]',el).textContent="±"+S.s;
-    $$("[data-e]",el).forEach(b=>b.setAttribute("aria-pressed",b.dataset.e===ev));tblPre(el,pre);
-    $(".cr-say",el).innerHTML=ev==="calm"?"点下面的按钮，让玩家做一件事，看这十二个人各自怎么反应。"
-      :ev==="rest"?"玩家停手，长时间没有新的刺激：好感度慢慢回到 50，各人回去做自己的事。再去对话，态度比原来差。"
-      :(ev==="hit"?"“被攻击”按范围广播。好感度降到 50，还没到开战线：":ev==="fight"?"好感度降到 0，过了开战线：":"“着火”是另一个事件，优先级更高：")
-        +(kinds<=1?`所有人做同一个动作（${C.name[keys[0]]}），人群像一个人。`:`同一件事有 ${kinds} 种反应：${keys.map(k=>C.name[k]+" "+cnt[k]+" 人").join("、")}。`);
-  }
-  el.addEventListener("click",e=>{const p=e.target.closest("[data-pre]");if(p){pre=p.dataset.pre;S={...C[pre]};draw();return}
-    const b=e.target.closest("[data-e]");if(b){ev=ev===b.dataset.e?"calm":b.dataset.e;draw()}});
-  el.addEventListener("input",e=>{const f=e.target.dataset&&e.target.dataset.f;if(!f)return;S[f]=+e.target.value;pre="";draw()});
-  draw();
-  return null;
-}
-
-Object.assign(TBX_LAB,{
-  reveal:{t:"沿路揭示",hint:"拖动“树种到哪”，再让玩家从坡顶走一遍：看第二个目标在路程的哪一段才露出来。",html:tblRevealHTML,mount:tblRevealMount},
-  route:{t:"路线重算",hint:"换一换门和交付点（也可以直接点图上的“交”），看有多少路要走第二遍。",html:tblRouteHTML,mount:tblRouteMount},
-  dens:{t:"沿路密度",hint:"拖三个滑条：点位放多密、每处能玩多久、多少人愿意停下，看间隔和比例怎么变。",html:tblDensHTML,mount:tblDensMount},
-  look:{t:"两个视角",hint:"拖动俯瞰点，对比它和大门口各回答得了几问。",html:tblLookHTML,mount:tblLookMount},
-  arena:{t:"面积与人数",hint:"拖场地的长、宽和人数，换大物件的位置，看它落在四级里的哪一级。",html:tblArenaHTML,mount:tblArenaMount},
-  curve:{t:"节奏曲线",hint:"上下拖动每一段的圆点，右边的检查跟着变。",html:tblCurveHTML,mount:tblCurveMount},
-  prep:{t:"准备兑现",hint:"勾选探查时到过哪里，再点“开战”：看每处准备在什么时候变成同伴的出手。",html:tblPrepHTML,mount:tblPrepMount},
-  mate:{t:"同伴状态",hint:"点玩家的行为，看同伴切到哪个状态、说什么。",html:tblMateHTML,mount:tblMateMount},
-  crowd:{t:"人群反应",hint:"先让玩家做一件事，再拖性格的两个滑条：同一件事，人群的反应怎么分层。",html:tblCrowdHTML,mount:tblCrowdMount}
-});
 (function(){
   if(document.getElementById("tbx4-css")) return;
   const st=document.createElement("style");st.id="tbx4-css";
   st.textContent=`
 .tbk.tbx-body{gap:14px}
+.tbl-btn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 10px;font:inherit;font-size:12px;line-height:1.5;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.tbl-btn:hover{border-color:var(--ink-2)}
+.tbl-btn[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
 .tbk-pick{display:flex;flex-wrap:wrap;gap:6px}
 .tbk-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:10px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .tbk-sum{font-size:13.5px;color:var(--ink-2)}
@@ -3861,9 +2807,6 @@ Object.assign(TBX_LAB,{
 .tbk-m label{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;font-size:13.5px;line-height:1.65;color:var(--ink-2);cursor:pointer}
 .tbk-m input{margin:5px 0 0;accent-color:var(--mark)}
 .tbk-m input:checked+span{color:var(--muted);text-decoration:line-through}
-.tbk em{font-style:normal;font-family:var(--f-mono);font-weight:600;font-size:10.5px;line-height:1;letter-spacing:.04em;padding:2px 5px 3px;border-radius:3px;margin-left:6px;vertical-align:2px;white-space:nowrap}
-.tbk em.tbx-ft{background:var(--mark-soft);color:var(--mark)}
-.tbk em.tbx-nw{background:var(--accent-soft);color:var(--accent)}
 @media (max-width:700px){.tbk-m{grid-template-columns:minmax(0,1fr)}}
 .tbt{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:-2px 0 16px}
 .tbt>span{font:11.5px/1.4 var(--f-mono);letter-spacing:.08em;color:var(--muted);margin-right:4px}
@@ -3893,54 +2836,6 @@ Object.assign(TBX_LAB,{
   document.head.appendChild(st);
 })();
 
-const tbxTxt=s=>String(s||"").replace(/<[^>]+>/g,"");
-function tbxShowRT(o){
-  return {name:o.name,async boot(host,m){
-    await tbxNeedJs(o.js(),o.attr,()=>!!o.lib());
-    const L=o.lib(),B=o.beats(),PH=o.phases();
-    const el=document.createElement("div");el.className="sbx live";host.appendChild(el);
-    const api=L.mount(el,{view:"ov"});
-    const show=L.createShow(api,el,{names:B.map(b=>b.n),phaseNames:PH.map(p=>p.s),onPhase(){},onPick(){}});
-    const wake=()=>{api.animUntil=Math.max(api.animUntil||0,performance.now()+9000)};
-    if(api.onUserStart)api.onUserStart(wake);
-    const views=(m.peek.v||[]).map(v=>{const isP=v[0]==="p",x=isP?PH[v[1]]:B[v[1]];if(!x)return null;
-      return {t:v[2]||(isP?x.s:x.n),cap:v[3]||(isP?`${x.s}<small>${tbxTxt(x.d)}</small>`:`${x.n}<small>${tbxTxt([x.see,x.change].filter(Boolean).join(" ")||x.d||x.tag)}</small>`),
-        go(){if(isP)show.setPhase(v[1],{fly:true});else show.setBeat(v[1]);wake()}}}).filter(Boolean);
-    return {views,first:0,dispose(){try{api.dispose()}catch(e){}}};
-  }};
-}
-Object.assign(TBX_PEEK,{
-  wh:tbxShowRT({name:"情报员任务 · 仓库",js:()=>WH_SBX_JS,attr:"data-wh3d",lib:()=>window.WH3D,beats:()=>WH_BEATS,phases:()=>WH_PHASES}),
-  mine:tbxShowRT({name:"矿山",js:()=>MINE_SBX_JS,attr:"data-mine3d",lib:()=>window.MINE3D,beats:()=>MINE_BEATS,phases:()=>MINE_PHASES}),
-  xigu:tbxShowRT({name:"溪谷",js:()=>CY_SBX_JS,attr:"data-xigu3d",lib:()=>window.XIGU3D,beats:()=>CY_BEATS,phases:()=>CY_PHASES}),
-  esc:{name:"古庙逃离路线",async boot(host,m){
-    await tbxNeedJs(ESC_SBX_JS,"data-esc3d",()=>!!window.ESC3D);
-    const el=document.createElement("div");el.className="sbx live";host.appendChild(el);
-    const api=ESC3D.mount(el,{view:"route"}),M=()=>({t:104,b:84,l:40,r:28}),no=()=>{};
-    ESC3D.createOverlay(api,el,{names:ESC_BEATS.map(b=>({n:b.n,set:b.k==="k-set"})),phases:ESC_PHASES,ov:()=>ESC_OV,ovM:M,phM:M,placeSkip:[],
-      onPhase:no,onPick:no,onBeat:no,onPass:no,onPlay:no,onEnd:no,onProgress:no});
-    api.overview({instant:true});
-    const wake=()=>{api.animUntil=Math.max(api.animUntil||0,performance.now()+9000)};
-    if(api.onUserStart)api.onUserStart(wake);
-    const views=(m.peek.v||[]).map(v=>{const x=ESC_BEATS[v[1]];if(!x)return null;
-      return {t:v[2]||x.n,cap:v[3]||`${x.n}<small>${tbxTxt(x.d||x.see||x.tag||"")}</small>`,go(){api.setBeat(v[1],{mode:api.hasTP&&api.hasTP(v[1])?"tp":"ov",silent:true});wake()}}}).filter(Boolean);
-    return {views,first:0,dispose(){try{api.stop&&api.stop()}catch(e){}try{api.dispose()}catch(e){}}};
-  }},
-  vil:{name:"村落 Demo",async boot(host,m){
-    await tbxNeedJs(VL_JS,"data-vil3d",()=>!!(window.VIL&&VIL.boot));
-    if(typeof vlCSS==="function")vlCSS();
-    const el=document.createElement("div");el.className="sbx live vl-sb";host.appendChild(el);
-    const api=await VIL.boot({host:el,base:VL_BASE,shadow:2048}),no=()=>{};
-    const stg=VIL.createStage(api,{onT:no,onChapter:no,onPlay:no,onFollow:no,onEnd:no});
-    api.setLabels([]);const S=VIL.SC.scReact(api);stg.load(S);stg.setT(0);stg.follow(true);
-    const ch=(S.chapters||S.ch||[]);
-    const views=ch.map((c,i)=>{const t0=Array.isArray(c)?c[0]:c.t,name=Array.isArray(c)?c[1]:(c.n||c.s),txt=Array.isArray(c)?c[2]:(c.d||c.cap);
-      return {t:tbxTxt(name)||("第 "+(i+1)+" 段"),cap:`${tbxTxt(name)}<small>${tbxTxt(txt)}</small>`,go(){stg.setT((+t0||0)+.05);stg.follow(true);stg.play()}}}).filter((x,i)=>!m.peek.v||m.peek.v.includes(i));
-    if(!views.length)views.push({t:"NPC 反应",cap:"打人、放火之后，村民按各自的性格做出不同的反应。",go(){stg.setT(0);stg.play()}});
-    return {views,first:0,dispose(){try{stg.pause();stg.clear()}catch(e){}try{api.dispose()}catch(e){}}};
-  }}
-});
-
 const TBK_KEY="tbx-check-v1";
 const tbkLoad=()=>{try{return JSON.parse(localStorage.getItem(TBK_KEY)||"{}")||{}}catch(e){return {}}};
 const tbkSave=o=>{try{localStorage.setItem(TBK_KEY,JSON.stringify(o))}catch(e){}};
@@ -3948,29 +2843,29 @@ function tbxCkHTML(){
   return `<div class="tbx-top"><button type="button" class="tbx-back">‹ 方法列表</button><span class="eyebrow">走查清单 · ${TOOLS.length} 条方法 · ${TOOLS.reduce((n,t)=>n+t.chk.length,0)} 个检查问题</span></div>
     <div class="tbx-body tbk">
       <h2 class="h2" tabindex="-1">选场景，汇成一张走查清单</h2>
-      <p class="tbm-lede">每条方法都带几个检查问题。选一个或几个场景，把适用的方法和问题汇到一起，走查的时候逐条勾。勾过的记在这台设备的浏览器里，也可以复制成文字带走。</p>
+      <p class="tbm-lede">每条方法都配了几个检查问题，只放在这一页。选一个或几个场景，把适用的方法和问题汇到一起，走查的时候逐条勾。勾过的记在这台设备的浏览器里，也可以复制成文字带走。</p>
       <div class="tbk-pick" role="group" aria-label="选场景，可以多选">${TBX_USES.map(u=>`<button type="button" class="tbl-btn" data-u="${u}" aria-pressed="false">${u}</button>`).join("")}</div>
-      <div class="tbk-bar"><span class="tbk-sum" aria-live="polite"></span><span class="tbk-acts"><label class="tbl-ck"><input type="checkbox" class="tbk-ft">只看精选方法</label><button type="button" class="tbl-btn tbk-copy">复制清单</button><button type="button" class="tbl-btn tbk-clear">清空勾选</button></span></div>
+      <div class="tbk-bar"><span class="tbk-sum" aria-live="polite"></span><span class="tbk-acts"><button type="button" class="tbl-btn tbk-copy">复制清单</button><button type="button" class="tbl-btn tbk-clear">清空勾选</button></span></div>
       <textarea class="tbk-txt" readonly hidden aria-label="清单的文字版，可以手动复制"></textarea>
       <div class="tbk-list"></div>
     </div>`;
 }
 function tbxCkMount(d){
   const root=$(".tbk",d);if(!root)return null;
-  const st=tbkLoad();let uses=new Set((st.u||["开放世界区域"]).filter(u=>TBX_USES.includes(u))),done=new Set(st.d||[]),ft=!!st.f;
+  const st=tbkLoad();let uses=new Set((st.u||["开放世界区域"]).filter(u=>TBX_USES.includes(u))),done=new Set(st.d||[]);
   const order=TBX_MAP.steps.flatMap(s=>s.c).concat(TBX_MAP.base);
-  const pick=()=>TOOLS.filter(t=>(t.use||[]).some(u=>uses.has(u))&&(!ft||t.feat));
-  const save=()=>tbkSave({u:[...uses],d:[...done],f:ft});
+  const pick=()=>TOOLS.filter(t=>(t.use||[]).some(u=>uses.has(u)));
+  const save=()=>tbkSave({u:[...uses],d:[...done]});
   const nDone=it=>it.reduce((n,t)=>n+t.chk.filter((q,i)=>done.has(t.id+"#"+i)).length,0);
   const text=()=>{const it=pick();let s=`走查清单 · ${[...uses].join("、")}\n`;
     order.forEach(c=>{const g=it.filter(t=>t.cat===c);if(!g.length)return;s+=`\n【${c}】\n`;g.forEach(t=>{s+=`${t.s||t.t}\n`;t.chk.forEach((q,i)=>{s+=`  [${done.has(t.id+"#"+i)?"x":" "}] ${q}\n`})})});return s};
   function draw(){
     const it=pick(),nq=it.reduce((n,t)=>n+t.chk.length,0);
-    $$(".tbk-pick button",root).forEach(b=>b.setAttribute("aria-pressed",uses.has(b.dataset.u)));$(".tbk-ft",root).checked=ft;
+    $$(".tbk-pick button",root).forEach(b=>b.setAttribute("aria-pressed",uses.has(b.dataset.u)));
     $(".tbk-sum",root).innerHTML=uses.size?`<b>${it.length}</b>条方法 · <b>${nq}</b>个问题 · 已勾<b class="tbk-nd">${nDone(it)}</b>`:"先选一个场景。";
     $(".tbk-txt",root).hidden=true;
     $(".tbk-list",root).innerHTML=order.map(c=>{const g=it.filter(t=>t.cat===c);if(!g.length)return "";
-      return `<section class="tbk-g"><h3 class="tbx-h">${c} · ${g.length} 条</h3>${g.map(t=>`<div class="tbk-m"><a href="#toolbox.${t.id}" data-id="${t.id}">${t.s||t.t}${tbxTags(t)}</a><ul>${t.chk.map((q,i)=>`<li><label><input type="checkbox" data-k="${t.id}#${i}"${done.has(t.id+"#"+i)?" checked":""}><span>${q}</span></label></li>`).join("")}</ul></div>`).join("")}</section>`}).join("");
+      return `<section class="tbk-g"><h3 class="tbx-h">${c} · ${g.length} 条</h3>${g.map(t=>`<div class="tbk-m"><a href="#toolbox.${t.id}" data-id="${t.id}">${t.s||t.t}</a><ul>${t.chk.map((q,i)=>`<li><label><input type="checkbox" data-k="${t.id}#${i}"${done.has(t.id+"#"+i)?" checked":""}><span>${q}</span></label></li>`).join("")}</ul></div>`).join("")}</section>`}).join("");
   }
   function copy(btn){
     const s=text(),ok=()=>{btn.textContent="已复制";setTimeout(()=>{btn.textContent="复制清单"},1600)};
@@ -3987,7 +2882,6 @@ function tbxCkMount(d){
   root.addEventListener("change",e=>{
     const k=e.target.dataset&&e.target.dataset.k;
     if(k){if(e.target.checked)done.add(k);else done.delete(k);save();const n=$(".tbk-nd",root);if(n)n.textContent=nDone(pick())}
-    else if(e.target.classList.contains("tbk-ft")){ft=e.target.checked;save();draw()}
   });
   draw();
   return null;
@@ -4025,15 +2919,13 @@ function tbtOpen(id,btn){
   const m=tbxById(id);if(!m)return;if(tbtOn)tbtClose();
   const el=document.createElement("div");el.className="tbt-ov";
   el.innerHTML=`<div class="tbt-scrim"></div><aside class="tbt-card" role="dialog" aria-modal="true" aria-label="${TBX_G.E(m.t)}">
-    <div class="tbt-top"><span class="eyebrow">关卡设计方法 · ${m.cat}${m.feat?" · 精选":""}</span><button type="button" class="tbt-x" title="关闭，回到案例页刚才的位置（Esc）">关闭 ✕</button></div>
+    <div class="tbt-top"><span class="eyebrow">关卡设计方法 · ${m.cat}</span><button type="button" class="tbt-x" title="关闭，回到案例页刚才的位置（Esc）">关闭 ✕</button></div>
     <div class="tbt-body">
       <h3 class="tbt-t" tabindex="-1">${m.t}</h3>
       ${m.r?`<p class="tbx-r">${m.r}</p>`:""}
       <div class="tbx-figw">${tbxFigHTML(m)}</div>
       <section><h4 class="tbx-h">做法</h4><ol class="tbx-steps">${m.steps.map(s=>`<li><span>${s}</span></li>`).join("")}</ol></section>
-      <section><h4 class="tbx-h">检查</h4><ul class="tbx-ul">${m.chk.map(s=>`<li>${s}</li>`).join("")}</ul></section>
-      ${m.tr?`<section><h4 class="tbx-h">取舍</h4><p class="tbx-tr">${m.tr}</p></section>`:""}
-      <a class="tbt-more" href="#toolbox.${m.id}">到方法页看完整的这一条${m.feat?"（有改前改后和动手示意）":""} →</a>
+      <a class="tbt-more" href="#toolbox.${m.id}">到方法页看这一条和用过它的案例 →</a>
     </div></aside>`;
   const P={el,back:btn,key(e){if(e.key==="Escape"){e.preventDefault();e.stopPropagation();tbtClose()}}};
   tbtOn=P;document.body.appendChild(el);document.documentElement.classList.add("tbt-lock");
@@ -29293,6 +28185,50 @@ function hxNeed(src,flag,test){
     if(!s){s=document.createElement("script");s.src=src;s.async=true;s.setAttribute(flag,"1");document.head.appendChild(s)}
     s.addEventListener("load",()=>ok());s.addEventListener("error",()=>no(new Error("load "+src)))});
 }
+function hxJs(id){return ({
+  region:[[XQ_JS.data,"data-xq3dd",()=>!!window.XFQ3D_DATA],[XQ_JS.lib,"data-xq3d",()=>!!window.XFQ3D],[XQ_BOT_JS,"data-xqbot",()=>!!window.XQ_BOT]],
+  space:[[ESC_SBX_JS,"data-esc3d",()=>!!window.ESC3D]],
+  quest:[[ZX_SBX_JS,"data-zx3d",()=>!!(window.ZX3D&&ZX3D.createStage)]],
+  system:[[SL_SBX_JS,"data-slice3d",()=>!!(window.SLICE3D&&SLICE3D.LIVE_ZONES)]],
+  verify:[[NS_JS.data,"data-ns3dd",()=>!!window.NS3D_DATA],[NS_JS.lib,"data-ns3d",()=>!!window.NS3D]],
+  pipe:[[MT_SBX_JS,"data-mt3d",()=>!!window.MT3D]]})[id]||[]}
+const HX_JS_SIZE={"js/xfq3d-data.js":5729800,"js/xfq3d.js":841562,"js/xfq-bot.js":448999,"js/esc3d.js":1258328,"js/zx3d.js":704335,
+  "js/slice3d.js":1992649,"js/ns3d.js":752792,"js/ns3d-data.js":1642486,"js/mt3d.js":625415};
+function hxPull(list,onp){
+  const todo=list.filter(x=>!x[2]()&&!document.querySelector(`script[${x[1]}]`));
+  if(!todo.length||typeof fetch!=="function"||location.protocol==="file:")return Promise.resolve();
+  const got=todo.map(()=>0),tot=todo.map(x=>HX_JS_SIZE[x[0]]||5e5),exact=todo.map(()=>false);
+  const tick=()=>onp&&onp(got.reduce((a,b)=>a+b,0),tot.reduce((a,b)=>a+b,0));
+  const one=(x,i)=>fetch(x[0]).then(r=>{
+      if(!r.ok)throw new Error("load "+x[0]+" "+r.status);
+      const enc=(r.headers.get("content-encoding")||"identity").toLowerCase(),cl=+r.headers.get("content-length")||0;
+      if(cl&&enc==="identity"){tot[i]=cl;exact[i]=true;tick()}
+      if(!r.body||!r.body.getReader)return r.text().then(t=>{got[i]=tot[i];tick();return t});
+      const rd=r.body.getReader(),parts=[];
+      const pump=()=>rd.read().then(({done,value})=>{
+        if(done){got[i]=tot[i];tick();return new Blob(parts).text()}
+        parts.push(value);got[i]+=value.length;if(!exact[i]&&got[i]>tot[i]*.98)tot[i]=got[i]/.98;tick();return pump()});
+      return pump()})
+    .catch(e=>{console.warn(e);return null});
+  return Promise.all(todo.map(one)).then(codes=>codes.forEach((code,i)=>{const x=todo[i];
+    if(code==null||x[2]())return;
+    const s=document.createElement("script");s.textContent=code+"\n//# sourceURL="+new URL(x[0],location.href).href;document.head.appendChild(s)}));
+}
+function hxFontsReady(onp){
+  const F=document.fonts;if(!F||!F.ready)return Promise.resolve();
+  const count=()=>{let a=0,b=0;F.forEach(x=>{if(x.status==="loaded")a++;else if(x.status==="loading")b++});onp&&onp(a,a+b)};
+  void document.body.offsetHeight;count();
+  const iv=setInterval(count,200);
+  const wait=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))).then(()=>F.ready).then(()=>F.status==="loading"?wait():null);
+  return Promise.race([wait(),new Promise(r=>setTimeout(r,6000))]).then(()=>{clearInterval(iv);count()});
+}
+function hxImgsReady(imgs,onp){
+  let n=0;const N=imgs.length;onp&&onp(0,N);
+  const one=im=>(im.complete&&im.naturalWidth?Promise.resolve():new Promise(r=>{im.addEventListener("load",r,{once:true});im.addEventListener("error",r,{once:true})}))
+    .then(()=>im.decode&&im.naturalWidth?im.decode().catch(()=>{}):null).then(()=>{onp&&onp(++n,N)});
+  return Promise.race([Promise.all(imgs.map(one)),new Promise(r=>setTimeout(r,15000))]);
+}
+const hxMB=n=>(n/1048576).toFixed(1);
 const HX_RM=typeof matchMedia==="function"&&matchMedia("(prefers-reduced-motion: reduce)").matches;
 function hxZoomGate(a,host){
   a.controls.enableZoom=false;
@@ -29445,6 +28381,17 @@ function initHome(){
   let cur=0;
   const closeTray=()=>{trays.forEach(t=>t.hidden=true);mores.forEach(b=>b.setAttribute("aria-expanded","false"))};
 
+  const LD=window.HX_LD&&HX_LD.on&&HX_LD.open?HX_LD:null;
+  let ld3d=null;
+  const ldEnd=()=>{if(!ld3d)return;const r=ld3d;ld3d=null;LD.done("data");LD.done("build");r()};
+  if(LD){
+    LD.done("page");
+    const fontP=hxFontsReady((a,n)=>LD.set("font",n?a/n:0,null,n?a+" / "+n:"")).then(()=>LD.done("font"));
+    const imgP=hxImgsReady([...$$(".hx-pic img",root),...$$(".hx-strip img",root)],(a,n)=>LD.set("img",n?a/n:0,null,a+" / "+n)).then(()=>LD.done("img"));
+    const p3d=new Promise(r=>{ld3d=r});
+    Promise.all([fontP,imgP,p3d]).then(()=>LD.finish());
+  }
+
   let live=null, seq=0, dead=false, reel=null, laps=0;
   const glOK=hxGL(), Q=location.search;
   const touch=matchMedia("(hover:none) and (pointer:coarse)").matches;
@@ -29462,16 +28409,20 @@ function initHome(){
   }
   function load3d(){
     const id=CAPS[cur].id, K=HOME_3D[id], my=++seq;
-    if(!glOK||!K){say("");prog(cur,1);return}
+    if(!glOK||!K){say("");prog(cur,1);ldEnd();return}
     say("正在载入 3D 沙盘…");
     const host=document.createElement("div");host.className="hx-host";slot.appendChild(host);
-    K.need().then(()=>{if(my!==seq||dead)return null;return K.boot(host)}).then(h=>{
+    const L=ld3d&&LD.open?LD:null, nm=HOME_PICS[id].tag.split(" · ")[0];
+    (L?hxPull(hxJs(id),(a,b)=>L.set("data",a/b,"载入 3D 沙盘 · "+nm,hxMB(a)+" / "+hxMB(b)+" MB")):Promise.resolve())
+    .then(()=>K.need()).then(()=>{if(my!==seq||dead)return null;
+      if(!L)return K.boot(host);
+      L.done("data");return L.crawl("build",.9,2.6,"搭建场景 · "+nm).then(()=>my!==seq||dead?null:K.boot(host))}).then(h=>{
       if(!h)return;
       if(my!==seq||dead){try{h.stop();h.api.dispose()}catch(e){}return}
       live=h;
       host.addEventListener("pointerdown",()=>{if(reel&&reel.on)reel.pause()});
-      requestAnimationFrame(()=>requestAnimationFrame(()=>{if(my!==seq)return;stage.classList.add("live");mkReel()}));
-    }).catch(e=>{console.error(e);if(my===seq){slot.innerHTML="";say("");prog(cur,1)}});
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{if(my!==seq)return;stage.classList.add("live");mkReel();if(L)requestAnimationFrame(ldEnd)}));
+    }).catch(e=>{console.error(e);if(my===seq){slot.innerHTML="";say("");prog(cur,1)}ldEnd()});
   }
   function mkReel(){
     const mk=HOME_REEL[CAPS[cur].id], my=seq, tab=cur;
@@ -29507,15 +28458,18 @@ function initHome(){
       pause(){if(!on)return;on=false;cancelAnimationFrame(raf);if(i>=0&&shots[i].hold)try{shots[i].hold()}catch(e){}
         stage.classList.remove("reel");btn("▶ 继续播放");pp.onclick=()=>reel&&reel.play();say(FREE)},
       kill(){on=false;cancelAnimationFrame(raf);if(i>=0&&shots[i].out)try{shots[i].out()}catch(e){}},
-      seek(k,u){on=false;cancelAnimationFrame(raf);enter(k);t=u*shots[k].d;apply();if(shots[k].tick)try{shots[k].tick(t)}catch(e){}if(live.draw)live.draw()}};
+      seek(k,u){on=false;cancelAnimationFrame(raf);enter(k);t=u*shots[k].d;apply();if(shots[k].tick)try{shots[k].tick(t)}catch(e){}if(live.draw)live.draw()},
+      prime(){if(i>=0)return;enter(0);apply();if(shots[0].tick)try{shots[0].tick(0)}catch(e){}try{if(live.draw)live.draw()}catch(e){}}};
     prog(tab,0);
-    if(auto){reel.play();
-      const nx=HOME_3D[CAPS[(tab+1)%tabs.length].id];setTimeout(()=>{if(my===seq&&nx)nx.need().catch(()=>{})},2500)}
+    if(auto){
+      const go=()=>{if(my!==seq||!reel||reel.on)return;reel.play();
+        const nx=HOME_3D[CAPS[(tab+1)%tabs.length].id];setTimeout(()=>{if(my===seq&&nx)nx.need().catch(()=>{})},2500)};
+      if(LD&&LD.open){reel.prime();LD.gate.then(go)}else go()}
     else{btn("▶ 播放镜头");pp.onclick=()=>reel&&reel.play();say(FREE)}
   }
-  const start3d=()=>{if(glOK)load3d();else{say("");prog(cur,1)}};
-  if(/[?&]dbg\b/.test(Q))window.__hx={get live(){return live},get reel(){return reel},load3d};
-  const bye=()=>{if(stage.isConnected)return;removeEventListener("hashchange",bye);dead=true;drop()};
+  const start3d=()=>{if(glOK)load3d();else{say("");prog(cur,1);ldEnd()}};
+  if(/[?&]dbg\b/.test(Q))window.__hx={get live(){return live},get reel(){return reel},load3d,ld:LD};
+  const bye=()=>{if(stage.isConnected)return;removeEventListener("hashchange",bye);dead=true;drop();if(LD&&LD.open)LD.close(true)};
   addEventListener("hashchange",bye);
 
   const pick=i=>{ if(i===cur)return;
@@ -29534,7 +28488,7 @@ function initHome(){
   root.addEventListener("keydown",e=>{if(e.key==="Escape")closeTray()});
   const dbg=/[?&]dbg\b/.test(location.search)&&/[?&]cap=(\d)/.exec(location.search);
   if(dbg&&+dbg[1]>0){pick(+dbg[1]);return}
-  setTimeout(()=>{if(!dead&&cur===0&&!live&&seq===0)start3d()},350);
+  if(LD)start3d();else setTimeout(()=>{if(!dead&&cur===0&&!live&&seq===0)start3d()},350);
 }
 const PB_JS="js/pb-board.js";
 const PB_POSTER="img/pb/poster.webp";
